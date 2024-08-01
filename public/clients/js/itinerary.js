@@ -64,6 +64,7 @@ async function generateItinerary() {
   const tipe_perjalanan = $("#tipe_perjalanan").val();
   const transportasi = $("#transportasi").val();
   const output = $("#result");
+  console.log("otws");
 
   if (!lokasi || !jumlah_orang || !mata_uang || !budget || !musim || !lama_perjalanan || !tipe_perjalanan || !transportasi) {
     return alert("Harap mengisi semua data");
@@ -75,6 +76,7 @@ async function generateItinerary() {
   $("#btn-plan").prop("disabled", true);
   $("#btn-plan span").text("Planning.....");
 
+  console.log("Sending fetch request to /itinerary");
   const response = await fetch("/itinerary", {
     method: "POST",
     headers: {
@@ -82,6 +84,7 @@ async function generateItinerary() {
     },
     body: JSON.stringify({ lokasi, jumlah_orang, mata_uang, budget, musim, lama_perjalanan, tipe_perjalanan, transportasi }),
   });
+  console.log("Response received", response);
 
   const reader = response.body.getReader();
   const decoder = new TextDecoder();
