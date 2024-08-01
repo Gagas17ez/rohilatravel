@@ -1,0 +1,291 @@
+{% extends "layouts/clients/masterLayout.njk" %}
+
+{% block content %}
+    
+    <!-- ***site header html end*** -->
+    <main id="content" class="site-main">
+    <section class="package-inner-page">
+        <!-- ***Inner Banner html start form here*** -->
+        <div class="inner-banner-wrap">
+            <div class="inner-baner-container" style="background-image: url(/clients/images/packages/1.jpg);">
+                <div class="container">
+                <div class="inner-banner-content">
+                    <h1 class="page-title">Package Deatil</h1>
+                </div>
+                </div>
+            </div>
+        </div>
+        <!-- ***Inner Banner html end here*** -->
+        <!-- ***career section html start form here*** -->
+        <div class="inner-package-detail-wrap">
+            <div class="container">
+                <div class="row">
+                <div class="col-lg-8 primary right-sidebar">
+                    <div class="single-packge-wrap">
+                        <div class="single-package-head d-flex align-items-center">
+                            <div class="package-title">
+                            <h2>{{package.title}}</h2>
+                            <div class="rating-start-wrap">
+                                <div class="rating-start">
+                                    <span style="width: 80%"></span>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="package-price">
+                            <h6 class="price-list">
+                                <span>Rp. {{package.price}}</span>
+                            </h6>
+                            </div>
+                        </div>
+                        <div class="package-meta">
+                            <ul>
+                            <li>
+                                <i class="fas fa-clock"></i>
+                                {{package.duration}} - Days
+                            </li>
+                            <li>
+                                <i class="fas fa-user-friends"></i>
+                                pax: {{package.pax}}
+                            </li>
+                            <li>
+                                <i class="fas fa-globe"></i>
+                                Status: {{package.status}}
+                            </li>
+                            </ul>
+                        </div>
+                        <figure class="single-package-image">
+                            <img src="/uploads/{{package.images}}" alt="">
+                        </figure>
+                        <div class="package-content-detail">
+                            <article class="package-overview">
+                            <h3>DESCRIPTION :</h3>
+                            <p>{{package.desc}}</p>
+                            </article>
+                            <article class="package-include bg-light-grey">
+                            <h3>ANOUNCEMENT :</h3>
+                            <b>Itinerary :</b>
+                            <p>{{package.itinerary}}</p>
+                            <ul>
+                                <li><i class="fas fa-check"></i><b>Benefit</b></li>
+                                <li><i class="fas fas fa-dot-circle"></i>{{package.benefit}}</li>
+                                <li><i class="fas fa-check"></i><b>Policy</b></li>
+                                <li><i class="fas fas fa-dot-circle"></i>{{package.policy}}</li>
+                            </ul>
+                            </article>
+                            {# destination start #}
+                            <article class="package-ininerary">
+                            <h3>DESTINATION :</h3>
+                            <ul>
+                                {% if package.Destinations == null %}
+                                <li>data not found</li>
+                                {% else %}
+                                    {% for item in package.Destinations %}
+                                        <li>
+                                            <i aria-hidden="true" class="fas fa-dot-circle"></i>
+                                            <span>{{item.name}}</span>
+                                            <ul>
+                                                {% for items in item.Trip_Types %}
+                                                    <li><i>{{items.name}}</i></li>
+                                                {% endfor %}
+                                            </ul>
+                                        </li>
+                                    {% endfor %}
+                                {% endif %}
+                            </ul>
+                            </article>
+                            {# destination end #}
+                            <hr>
+                            {# acomodation start #}
+                            <article class="package-ininerary">
+                                <h3>ACOMODATION :</h3>
+                                <ul>
+                                    {% if package.Acomodations == null %}
+                                    <li>data not found</li>
+                                {% else %}
+                                    {% for item in package.Acomodations %}
+                                        <li><i aria-hidden="true" class="fas fa-dot-circle"></i>
+                                            <span>{{item.name}}</span>
+                                        </li>
+                                    {% endfor %}
+                                {% endif %}
+                                </ul>
+                            </article>
+                            {# acomodation end #}
+                            <hr>
+                            {# transportation start #}
+                            <article class="package-ininerary">
+                                <h3>TRANSPORTATION :</h3>
+                                <ul>
+                                {% if package.Transportation == null %}
+                                    <li>data not found</li>
+                                {% else %}
+                                    {% for item in package.Transportation %}
+                                        <li><i aria-hidden="true" class="fas fa-dot-circle"></i>
+                                            <span>{{item.name}}</span>
+                                        </li>
+                                    {% endfor %}
+                                {% endif %}
+                                </ul>
+                            </article>
+                            {# transportation end #}
+                            <hr>
+                            {# restaurant start #}
+                            <article class="package-ininerary">
+                                <h3>RESTAURANT :</h3>
+                                <ul>
+                                {% if package.Restaurants == null %}
+                                    <li>data not found</li>
+                                {% else %}
+                                    {% for item in package.Restaurants %}
+                                        <li><i aria-hidden="true" class="fas fa-dot-circle"></i>
+                                            <span>{{item.name}}</span>
+                                        </li>
+                                    {% endfor %}
+                                {% endif %}
+                                </ul>
+                            </article>
+                            {# restaurant end #}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="sidebar">
+                        {# Booking card start #}
+                        <div class="booking-form-wrap">
+                            <div class="booking-form-inner primary-bg text-center">
+                            <h3>BOOKING</h3>
+                            <p>Anda dapat langsung ke lokasi atau melakukan reservasi dahulu</p>
+                            <a href="/contactUs" class="outline-btn outline-btn-white">Hubungi Kami</a>
+                            </div>
+                        </div>
+                        {# Booking card End #}
+                        <div class="related-package">
+                            <h3>RELATED IMAGES</h3>
+                            <p>Quaerat inventore! Vestibulum aenean volutpat gravida. Sagittis, euismod perferendis.</p>
+                            <div class="related-package-slide">
+                            <div class="related-package-item">
+                                <img src="/clients/images/img1.jpg" alt="">
+                            </div>
+                            <div class="related-package-item">
+                                <img src="/clients/images/img2.jpg" alt="">
+                            </div>
+                            <div class="related-package-item">
+                                <img src="/clients/images/img3.jpg" alt="">
+                            </div>
+                            </div>
+                        </div>
+                        <div class="package-map">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.540423056448!2d-0.12174238402827448!3d51.50330061882345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487604b900d26973%3A0x4291f3172409ea92!2slastminute.com%20London%20Eye!5e0!3m2!1sen!2snp!4v1646314586610!5m2!1sen!2snp" width="600" height="320" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                        <div class="package-list">
+                            <div class="overlay"></div>
+                            <h4>MORE PACKAGES</h4>
+                            <ul>
+                            <li>
+                                <a href="#"><i aria-hidden="true" class="icon icon-arrow-right-circle"></i>Vacation Packages</a>
+                            </li>
+                            <li>
+                                <a href="#"><i aria-hidden="true" class="icon icon-arrow-right-circle"></i>Homeymoon Packages</a>
+                            </li>
+                            <li>
+                                <a href="#"><i aria-hidden="true" class="icon icon-arrow-right-circle"></i>New Year Packages</a>
+                            </li>
+                            <li>
+                                <a href="#"><i aria-hidden="true" class="icon icon-arrow-right-circle"></i>Weekend Packages</a>
+                            </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <!-- ***career section html start form here*** -->
+    </section>
+    </main>
+    <!-- ***site footer html start form here*** -->
+
+    <!-- ***Footer start*** -->
+    {% include "components/clients/index/footer.njk" %}
+    <!-- ***Footer end*** -->
+
+    {% include "components/clients/index/backToTop.njk" %}
+
+        <!-- ***custom search field html*** -->
+        <div class="header-search-form">
+            <div class="container">
+                <div class="header-search-container">
+                    <form class="search-form" role="search" method="get">
+                        <input type="text" name="s" placeholder="Enter your text...">
+                    </form>
+                    <a href="#" class="search-close">
+                        <i class="fas fa-times"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- ***custom search field html*** -->
+        
+        <!-- ***custom top bar offcanvas html*** -->
+        <div id="offCanvas" class="offcanvas-container">
+            <div class="offcanvas-inner">
+                <div class="offcanvas-sidebar">
+                    <aside class="widget author_widget">
+                        <h3 class="widget-title">OUR PROPRIETOR</h3>
+                        <div class="widget-content text-center">
+                            <div class="profile">
+                                <figure class="avatar">
+                                    <img src="/clients/images/img21.jpg" alt="">
+                                </figure>
+                                <div class="text-content">
+                                    <div class="name-title">
+                                        <h4> James Watson</h4>
+                                    </div>
+                                    <p>Accumsan? Aliquet nobis doloremque, aliqua? Inceptos voluptatem, duis tempore
+                                        optio quae animi viverra distinctio cumque vivamus, earum congue, anim velit</p>
+                                </div>
+                                <div class="socialgroup">
+                                    <ul>
+                                        <li> <a target="_blank" href="#"> <i class="fab fa-facebook"></i> </a> </li>
+                                        <li> <a target="_blank" href="#"> <i class="fab fa-google"></i> </a> </li>
+                                        <li> <a target="_blank" href="#"> <i class="fab fa-twitter"></i> </a> </li>
+                                        <li> <a target="_blank" href="#"> <i class="fab fa-instagram"></i> </a> </li>
+                                        <li> <a target="_blank" href="#"> <i class="fab fa-pinterest"></i> </a> </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                    <aside class="widget widget_text text-center">
+                        <h3 class="widget-title">CONTACT US</h3>
+                        <div class="textwidget widget-text">
+                            <p>Feel free to contact and<br /> reach us !!</p>
+                            <ul>
+                                <li>
+                                    <a href="tel:+01988256203">
+                                        <i aria-hidden="true" class="icon icon-phone1"></i>
+                                        +01(988) 256 203
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="mailtop:info@domain.com">
+                                        <i aria-hidden="true" class="icon icon-envelope1"></i>
+                                        info@domain.com
+                                    </a>
+                                </li>
+                                <li>
+                                    <i aria-hidden="true" class="icon icon-map-marker1"></i>
+                                    Sidoarjo
+                                </li>
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+                <a href="#" class="offcanvas-close">
+                    <i class="fas fa-times"></i>
+                </a>
+            </div>
+            <div class="overlay"></div>
+        </div>
+        <!-- ***custom top bar offcanvas html*** -->
+{% endblock content %}

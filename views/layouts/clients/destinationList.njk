@@ -1,0 +1,30 @@
+{% import "components/clients/index/card.njk" as card %} {# destinasi(tarif, lokasi, nama, deskripsi, img) #}
+
+<section class="home-destination">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-sm-center">
+        <div class="section-heading">
+          <h5 class="sub-title">TEMUKAN TEMPAT</h5>
+          <h2 class="section-title">DESTINASI POPULER</h2>
+          <p>Temukan tempat yang menakjubkan untuk dikunjungi. Mulai petualanganmu sekarang!</p>
+        </div>
+      </div>
+    </div>
+    <div class="destination-section">
+      <div class="row gx-5">
+        {% if destination == null %}
+        <p class="text-center"><b>Data Destinasi tidak tersedia</b></p>
+        {% else %}
+        {% for item in destination %}
+        {{ card.card3(75, item.kota_kecamatan, item.nama, "Destinasi menenangkan di Jawa Timur", "/destinasi/"+item.id ,
+        item.gambar) }}
+        {% endfor %}
+        {% endif %}
+      </div>
+      <div class="section-btn-wrap text-center">
+        <a href="/destinasi" class="round-btn">Lebih Banyak Destinasi</a>
+      </div>
+    </div>
+  </div>
+</section>

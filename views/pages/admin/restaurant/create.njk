@@ -1,0 +1,43 @@
+{% extends "layouts/admin/adminLayout.njk" %} {% import "components/admin/input.njk" as form %} {% block content %}
+<div class="container-fluid px-4">
+  <a href="/admin/restaurant" class="btn btn-primary mt-4">
+    <i class="fa-solid fa-chevron-left"></i>
+    <span>Back</span>
+  </a>
+  <h3 class="my-2">Create Restaurant</h3>
+
+  <div class="card card-default card-body">
+    <div class="row p-1">
+      <form action="/admin/restaurant/store" enctype="multipart/form-data" method="POST">
+        <div class="col-md-8">
+          {{ form.input("text", "name", "Name") }}
+          {{ form.input("text", "address", "Address") }}
+          {{ form.textarea("desc", "Description") }}
+          {{ form.input("number", "price", "Price") }}
+          <div class="row">
+            <div class="col-6">
+              <div class="form-floating">
+                {{ form.input("number", "lat", "Latitude") }}
+              </div>
+            </div>
+            <div class="col-6">
+              {{ form.input("number", "long", "Longitude") }}
+            </div>
+          </div>
+          {{ form.dropdown("cook", "Type", ["local", "international", "asian", "arabic", "chinese", "japan"]) }}
+          {{ form.input("text", "service", "Service") }}
+    
+          <div class="mb-3">
+            <div class="col-md-4">
+              <label for="images" class="form-label">Image : </label>
+              <input type="file" class="form-control" id="images" name="images" required />
+            </div>
+          </div>
+    
+          <button type="submit" class="btn btn-primary mt-3">Simpan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

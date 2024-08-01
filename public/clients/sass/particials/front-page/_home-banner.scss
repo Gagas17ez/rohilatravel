@@ -1,0 +1,111 @@
+.home-banner {
+	@include background(size, cover);
+	background-repeat: no-repeat;
+	background-position: center center;
+	min-height: 800px;
+	position: relative;
+	z-index: 1;
+	.overlay {
+		background-color: rgba(0, 0, 0, 0.7);
+	}
+	@include bp(smx) {
+		min-height: 600px;
+	}
+}
+.banner-content {
+	position: relative;
+	padding: 0 0 15px;
+	z-index: 1;
+	* {
+		color: $light-color;
+	}
+	.banner-title {
+		@include font-size(70);
+		line-height: 1.1;
+		margin-bottom: 20px;
+	}
+	p {
+		margin-bottom: 30px;
+	}
+	.banner-btn {
+		margin-left: -10px;
+		margin-right: -10px;
+		a {
+			margin: 10px;
+		}
+	}
+	@include bp(lgx) {
+		.banner-title {
+			@include font-size(50);
+		}
+	}
+	@include bp(mdx) {
+		.banner-title {
+			@include font-size(40);
+		}
+	}
+	@include bp(smx) {
+		padding: 15px 0;
+		.banner-title {
+			@include font-size(30);
+		}
+		.banner-btn {
+			margin-left: -5px;
+			margin-right: -5px;
+			@include flexbox();
+			@include flex-wrap(wrap);
+			a {
+				padding: 10px 15px;
+				text-align: center;
+				margin: 5px;
+				@include flex-grow(1);
+			}
+		}
+	}
+}
+.home-banner-slider {
+	overflow: hidden;
+	&.slick-slider.slick-dotted {
+		margin-bottom: 0;
+	}
+	.slick-dots {
+		bottom: 20px;
+	}
+	.slick-arrow {
+		@include transition(linear 0.6s);
+		opacity: 0;
+		&:before {
+			font-size: 15px;
+			width: 45px;
+			height: 45px;
+			line-height: 45px;
+		}
+	}
+	.slick-prev {
+		left: -100px;
+	}
+	.slick-next {
+		right: -100px;
+	}
+	&:hover {
+		.slick-arrow {
+			opacity: 1;
+		}
+		.slick-prev {
+			left: 15px;
+		}
+		.slick-next {
+			right: 15px;
+		}
+	}
+	@include bp(smx){
+		.slick-arrow {
+			&:before {
+				width: 30px;
+				height: 30px;
+				line-height: 30px;
+				font-size: 11px;
+			}
+		}
+	}
+}

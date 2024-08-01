@@ -1,0 +1,167 @@
+{% extends "layouts/admin/adminLayout.njk" %}
+
+{% block content %}
+    <div class="container-fluid px-4">
+        <a href="/admin/package" class="btn btn-primary mt-4">
+            <i class="fa-solid fa-chevron-left"></i>
+            <span>Back</span>
+        </a>
+        <a href="/admin/package/edit/{{package.id}}" class="btn btn-primary mt-4">
+            <span>Edit</span>
+            <i class="fa-solid fa-chevron-right"></i>
+        </a>
+        <h3 class="my-2"><i class="fas fa-box-open"></i>  Package Detail</h3>
+        <main id="content" class="site-main mt-3">
+            <section class="career-inner-page">
+            <!-- ***career section html start form here*** -->
+            <div class="inner-career-detail-wrap">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4">
+                        <figure class="figure-caption">
+                            <img src="/uploads/{{package.images}}" class="figure-img img-fluid rounded">
+                        </figure>
+                        </div>
+                        <div class="col">
+                        <div class="tab-section">
+                            <div class="tab-container">
+                                <div class="responsive-tabs">
+
+                                    <div id="nav-tab-content" class="tab-content" role="tablist">
+                                    <div id="pane-A" class="card tab-pane fade show active" role="tabpanel" aria-labelledby="tab-A">
+                                        <div class="card-header" role="tab" id="heading-A">
+                                            <h5 class="mb-0">{{package.title}}</h5>
+                                        </div>
+                                        <div id="collapse-A" class="collapse show" data-bs-parent="#nav-tab-content" role="tabpanel"
+                                            aria-labelledby="heading-A">
+                                            <div class="card-body">
+                                                <table class="table table-striped-columns">
+                                                <tbody>
+                                                    <tr>
+                                                    <th>ID</th>
+                                                    <td>{{package.id}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                    <th>Title</th>
+                                                    <th>{{package.title}}</th>
+                                                    </tr>
+                                                    <tr>
+                                                    <th>Images</th>
+                                                    <td>{{package.images}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                    <th>Duration</th>
+                                                    <td>{{package.duration}} Day</td>
+                                                    </tr>
+                                                    <tr>
+                                                    <th>Pax</th>
+                                                    <td>{{package.pax}} Orang</td>
+                                                    </tr>
+                                                    <tr>
+                                                    <th>Price</th>
+                                                    <td>Rp. {{package.price}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                    <th>Description</th>
+                                                    <td>{{package.desc}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                    <th>Benefit</th>
+                                                    <td>{{package.benefit}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                    <th>Itinerary</th>
+                                                    <td>{{package.itinerary}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                    <th>Policy</th>
+                                                    <td>{{package.policy}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                    <th>Status</th>
+                                                    <td>{{package.status}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Destination</th>
+                                                        <td>
+                                                            <ul>
+                                                            {% if package.Destinations == null %}
+                                                                <li>data not found</li>
+                                                            {% else %}
+                                                                {% for item in package.Destinations %}
+                                                                    <li>{{item.name}}
+                                                                        <ul>
+                                                                            {% for items in item.Trip_Types %}
+                                                                                <li><i>{{items.name}}</i></li>
+                                                                            {% endfor %}
+                                                                        </ul>
+                                                                    </li>
+                                                                {% endfor %}
+                                                            {% endif %}
+                                                            </ul>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Acomodation</th>
+                                                        <td>
+                                                            <ul>
+                                                            {% if package.Acomodations == null %}
+                                                                <li>data not found</li>
+                                                            {% else %}
+                                                                {% for item in package.Acomodations %}
+                                                                    <li>{{item.name}}
+                                                                    </li>
+                                                                {% endfor %}
+                                                            {% endif %}
+                                                            </ul>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Transportation</th>
+                                                        <td>
+                                                            <ul>
+                                                            {% if package.Transportation == null %}
+                                                                <li>data not found</li>
+                                                            {% else %}
+                                                                {% for item in package.Transportation %}
+                                                                    <li>{{item.name}}
+                                                                    </li>
+                                                                {% endfor %}
+                                                            {% endif %}
+                                                            </ul>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Restaurants</th>
+                                                        <td>
+                                                            <ul>
+                                                            {% if package.Restaurants == null %}
+                                                                <li>data not found</li>
+                                                            {% else %}
+                                                                {% for item in package.Restaurants %}
+                                                                    <li>{{item.name}}
+                                                                    </li>
+                                                                {% endfor %}
+                                                            {% endif %}
+                                                            </ul>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ***career section html start form here*** -->
+            </section>
+        </main>
+    </div>
+{% endblock %}

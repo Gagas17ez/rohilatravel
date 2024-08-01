@@ -1,0 +1,37 @@
+{% extends "layouts/admin/adminLayout.njk" %} {% import "components/admin/data-table.njk" as datatable %} {% block content %}
+<div class="container-fluid px-4">
+  <h3 class="my-3"><i class="fas fa-utensils"></i> Restaurant List</h3>
+
+  <button class="btn btn-primary mb-3" onclick="window.location.href+='/create'"><i class="fas fa-plus-circle"></i> &nbsp;Tambah Restaurant</button>
+  {# <a href="/admin/restaurant/create" class="btn btn-primary my-2">Create Restaurant</a> #} {% if data.length > 0 %}
+  {{ datatable.restaurant(data) }}
+  {% else %}
+  <p><b>Data restaurant tidak ada</b></p>
+  {% endif %}
+</div>
+<script>
+  async function deleteRestaurant(id) {
+    if (confirm("Are you sure you want to delete this Restaurant?")) {
+      try {
+        const response = await fetch("/admin/restaurant/api/delete/" + id, {
+          method: "DELETE",
+        });
+
+        if (response.ok) {
+          // Optionally handle success, like updating UI
+          alert("Restaurant deleted successfully");
+          location.reload();
+        } else {
+          // Handle server error
+          console.error("Failed to delete Restaurant:", response.statusText);
+        }
+      } catch (error) {
+        // Handle network error
+        console.error("Failed to delete Restaurant:", error.message);
+      }
+    } else {
+      return false;
+    }
+  }
+</script>
+{% endblock %}

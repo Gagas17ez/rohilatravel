@@ -1,0 +1,24 @@
+{% import "components/clients/index/card.njk" as card %} {# card2(discount,time, pax, place, title, description, actualPrice, promo, img="clients/images/bg-rusli.jpg") #}
+
+<section class="home-offer">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-sm-center">
+        <div class="section-heading">
+          <h5 class="sub-title">OFFER & DISCOUNT</h5>
+          <h2 class="section-title">OUR BEST PACKET</h2>
+          <p>Recomendasi paket terbaik yang kami sediakan untuk anda nikmati perjalanan di dunia berbagai destinasi </p>
+        </div>
+      </div>
+    </div>
+    <div class="offer-section">
+      <div class="row">
+        {{ card.card2(25, "7D/6N", 10, "Bandung", "TOUR TO SATORINI", "Fusce hic augue velit wisi ips quibus dam pariatur, iusto.", 1300, 1105, "clients/images/bg-rusli.jpg")}}
+        {{ card.card2(25, "7D/6N", 10, "Bandung", "TOUR TO SATORINI", "Fusce hic augue velit wisi ips quibus dam pariatur, iusto.", 1300, 1105, "clients/images/bg-rusli.jpg")}}
+      </div>
+      <div class="section-btn-wrap text-center">
+        <a href="/package" class="round-btn">VIEW ALL PACKAGES</a>
+      </div>
+    </div>
+  </div>
+</section>

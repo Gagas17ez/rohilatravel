@@ -1,0 +1,121 @@
+{% extends "layouts/admin/adminLayout.njk" %}
+{% import "components/admin/input.njk" as form %}
+
+{% block content %}
+  <div class="container-fluid px-4">
+    <a href="/admin/destination/detail/{{desti.id}}" class="btn btn-primary mt-4">
+      <i class="fa-solid fa-chevron-left"></i>
+      <span>Back</span>
+    </a>
+    <h3 class="my-2">Update Destination</h3>
+    <form>
+      <div class="col-md-8">
+        {{ form.editInput("text", "destination", "Destination", desti.name) }}
+
+        <div class="form-floating my-3">
+          <select class="form-select" id="type" aria-label="Type" data-placeholder="Select Type Trip"  multiple>
+            {% for item in tripType %}
+              {% if desti.tripTypes.includes(item.id) %}
+                <option value="{{ item.id }}" selected>{{ item.name }}</option>
+              {% else %}
+                <option value="{{ item.id }}">{{ item.name }}</option>
+              {% endif %}
+            {% endfor %}
+          </select>
+          <label for="type">Type</label>
+        </div>
+
+        <div class="row mb-4">
+          <div class="col-12">
+            <label for="formFile" class="form-label">Image</label><br>
+            <img src="/uploads/{{desti.images}}" alt="images" width="150px" class="mb-2">
+            <input class="form-control" type="file" id="images" value="{{desti.images}}">
+          </div>
+        </div>
+        {{ form.editDropdown("city", "City", city, desti.district_city ) }}
+        {{ form.editTextarea("description", "Description", desti.description) }}
+        {{ form.editTextarea("address", "Address", desti.address) }}
+        <div class="row">
+          <div class="col-6">
+            <div class="form-floating">
+              {{ form.editInput("text", "latitude", "Latitude", desti.lat) }}
+            </div>
+          </div>
+          <div class="col-6">
+            {{ form.editInput("text", "longitude", "Longitude", desti.long) }}
+          </div>
+        </div>
+        {{ form.editDropdown("status", "Status", ['Open', 'Close'], desti.status) }}
+        <button type="button" class="btn btn-primary my-3" onclick="update(`{{desti.id}}`)">Submit</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    $(document).ready(function(){
+      $('#type').select2( {
+          theme: "bootstrap-5",
+          width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+          placeholder: $( this ).data( 'placeholder' ),
+      } );
+    });
+
+    $("#latitude").change(()=>{
+      const lat = parseFloat($("#latitude").val().replace(",", "."));
+      if(isNaN(lat)){
+        alert("Sorry, latitude must be an number");
+        $("#latitude").focus();
+        $("#latitude").val("");
+      }
+    })
+
+    $("#longitude").change(()=>{
+      const long = parseFloat($("#longitude").val().replace(",", "."));
+      if(isNaN(long)){
+        alert("Sorry, longitude must be an number");
+        $("#longitude").focus();
+        $("#longitude").val("");
+      }
+    })
+
+    function update(id) {
+      const data = {};
+      data.name = $("#destination").val();
+      data.district_city = $("#city").val();
+      data.description = $("#description").val();
+      data.address = $("#address").val();
+      data.lat = $("#latitude").val();
+      data.long = $("#longitude").val();
+      data.status = $("#status").val();
+      data.typeTrip = $("#type").val();
+
+      const fileInput = document.getElementById('images');
+      const file = fileInput.files[0];
+
+      const formData = new FormData();
+      formData.append('images', file);
+      formData.append('data', JSON.stringify(data));
+
+      fetch(`/admin/destination/api/update/${id}`, {
+        method: 'PATCH',
+        body: formData
+      })
+      .then((response) => {
+        // if (!response.ok) {
+        //     throw new Error('Network response was not ok');
+        // }
+        return response.json();
+      })
+      .then((data) => {
+        console.log({ data });
+        alert(data.status.message);
+        if(data.status.code == 201){
+          window.location.href = `/admin/destination/detail/${id}`;
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+    }
+  </script>
+{% endblock %}

@@ -1,0 +1,94 @@
+{% extends "layouts/admin/adminLayout.njk" %}
+
+{% block content %}
+    <div class="container-fluid px-4">
+        <a href="/admin/acomodation" class="btn btn-primary mt-4">
+            <i class="fa-solid fa-chevron-left"></i>
+            <span>Back</span>
+        </a>
+        <a href="/admin/acomodation/edit/{{data.id}}" class="btn btn-primary mt-4">
+            <span>Edit</span>
+            <i class="fa-solid fa-chevron-right"></i>
+        </a>
+        <h3 class="my-2"><i class="fas fa-house-damage"></i>   Acomodation Detail</h3>
+        <main id="content" class="site-main mt-3">
+            <section class="career-inner-page">
+            <!-- ***career section html start form here*** -->
+            <div class="inner-career-detail-wrap">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4">
+                        <figure class="figure-caption">
+                            <img src="{{ data.images }}" class="figure-img img-fluid rounded" >
+                        </figure>
+                        </div>
+                        <div class="col">
+                        <div class="tab-section">
+                            <div class="tab-container">
+                                <div class="responsive-tabs">
+
+                                    <div id="nav-tab-content" class="tab-content" role="tablist">
+                                    <div id="pane-A" class="card tab-pane fade show active" role="tabpanel" aria-labelledby="tab-A">
+                                        <div class="card-header" role="tab" id="heading-A">
+                                            <h5 class="mb-0">{{ data.name }}</h5>
+                                        </div>
+                                        <div id="collapse-A" class="collapse show" data-bs-parent="#nav-tab-content" role="tabpanel"
+                                            aria-labelledby="heading-A">
+                                            <div class="card-body">
+                                                <table class="table table-striped-columns">
+                                                <tbody>
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <td>{{ data.id }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Name</th>
+                                                        <th>{{ data.name }}</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Address</th>
+                                                        <td>{{ data.address }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Description</th>
+                                                        <td>{{ data.desc }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Price</th>
+                                                        <td>Rp. {{ data.price }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Latitude</th>
+                                                        <td>{{ data.lat }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Longitude</th>
+                                                        <td>{{ data.long }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Facility</th>
+                                                        <td>{{ data.fasility }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>Policy Rule</th>
+                                                        <td>{{ data.policy }}</td>
+                                                    </tr>
+                                                </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ***career section html start form here*** -->
+            </section>
+        </main>
+    </div>
+{% endblock %}

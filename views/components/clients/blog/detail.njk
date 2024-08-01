@@ -1,0 +1,48 @@
+{% macro recent(title, date, comment, link, img="/clients/images/img5.jpg") %}
+<li>
+  <figure class="post-thumb">
+    <a href="{{link}}"><img src="{{img}}" alt="" /></a>
+  </figure>
+  <div class="post-content">
+    <h5>
+      <a href="{{link}}">{{title}}</a>
+    </h5>
+    <div class="entry-meta">
+      <span class="posted-on">
+        {{date}}
+      </span>
+      <span class="comments-link">
+        {{comment}}
+      </span>
+    </div>
+  </div>
+</li>
+{% endmacro %}
+
+{% macro category(title, total, link="#") %}
+<li>
+    <i aria-hidden="true" class="fas fa-dot-circle"></i>
+    <a href="{{link}}">{{title}}</a>
+    <span>({{total}})</span>
+  </li>
+{% endmacro %}
+
+{% macro comment(name, date, comment, img="/clients/images/img19.jpg") %}
+    <li>
+        <ol>
+        <li>
+            <figure class="comment-thumb">
+                <img src="{{img}}" alt="">
+            </figure>
+            <div class="comment-content">
+                <div class="comment-header">
+                    <h5 class="author-name">{{name}}</h5>
+                    <span class="post-on">{{date}}</span>
+                </div>
+                <p>{{comment}}</p>
+                {# <a href="#replyForm" class="reply"><i class="fas fa-reply"></i>Reply</a> #}
+            </div>
+        </li>
+        </ol>
+    </li>
+{% endmacro %}

@@ -1,0 +1,354 @@
+{% macro itinerary(itinerary) %}
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            Itinerary Table
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple" class="table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Lokasi/Destinasi</th>
+                        <th>Jumlah Wisatawan</th>
+                        <th>Mata Uang</th>
+                        <th>Budget/orang</th>
+                        <th>Musim</th>
+                        <th>Lama Perjalanan (Hari)</th>
+                        <th>Tipe Perjalanan</th>
+                        <th>Transportasi</th>
+                        <th>Created At</th>
+                        <th>Hasil Itinerary</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>No</th>
+                        <th>Lokasi/Destinasi</th>
+                        <th>Jumlah Wisatawan</th>
+                        <th>Mata Uang</th>
+                        <th>Budget/orang</th>
+                        <th>Musim</th>
+                        <th>Lama Perjalanan (Hari)</th>
+                        <th>Tipe Perjalanan</th>
+                        <th>Transportasi</th>
+                        <th>Created At</th>
+                        <th>Hasil Itinerary</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    {% for data in itinerary %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ data.lokasi }}</td>
+                            <td>{{ data.jumlah_orang }}</td>
+                            <td>{{ data.mata_uang }}</td>
+                            <td>{{ data.budget }}</td>
+                            <td>{{ data.musim }}</td>
+                            <td>{{ data.lama_perjalanan }}</td>
+                            <td>{{ data.tipe_perjalanan }}</td>
+                            <td>{{ data.transportasi }}</td>
+                            <td>{{ data.createdAt }}</td>
+                            <td>{{ data.hasil_itinerary | safe }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro destination(data) %}
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            Destination Table
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple" class="table">
+                <thead>
+                    <tr>
+                        <tr>
+                            <th>No</th>
+                            <th>Name</th>
+                            <th>City</th>
+                            <th>Address</th>
+                            <th>Status</th>
+                            <th> Action </th>
+                        </tr>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for init in data %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ init.name }}</td>
+                            <td>{{ init.district_city }}</td>
+                            <td>{{ init.address }}</td>
+                            <td>{{ init.status }}</td>
+                            <td>
+                                <a href="/admin/destination/detail/{{ init.id }}" class="btn btn-sm btn-warning" title="Detail Selected Destination">
+                                    <i class="fa-solid fa-file"></i>
+                                </a>
+                                <a onclick="deleteDestination('{{ init.id }}')" class="btn btn-sm btn-danger" title="Delete Selected Destination">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    {# <template x-for="(destination, index) in data" :key="destination.id">
+                        <tr>
+                            <td x-text="index + 1"></td>
+                            <td>
+                                <a x-bind:href="window.location.href + '/detail/' + destination.id "
+                                class="w-full text-biru underline whitespace-no-wrap bg-white text-sm text-left"
+                                x-text="destination.name"></a>
+                            </td>
+                            <td x-text="destination.district_city"></td>
+                            <td x-text="destination.description"></td>
+                            <td x-text="destination.address"></td>
+                            <td x-text="destination.lat"></td>
+                            <td x-text="destination.long"></td>
+                            <td x-text="destination.status"></td>
+                        </tr>
+                    </template> #}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro package(package) %}
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            Packages Table
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple" class="table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>Duration</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for data in package %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ data.title }}</td>
+                            <td>{{ data.duration }}</td>
+                            <td>{{ data.price }}</td>
+                            <td>{{ data.status }}</td>
+                            <td>
+                                <a href="/admin/package/detail/{{ data.id }}" class="btn btn-sm btn-warning" title="Detail Selected Package">
+                                    <i class="fa-solid fa-file"></i>
+                                </a>
+                                <a onclick="deletePackage('{{ data.id }}')" class="btn btn-sm btn-danger" title="Delete Selected Package">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro blogs(blogs) %}
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            List Blog
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple" class="table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Judul Blog</th>
+                        <th>Kategori</th>
+                        <th>Status</th>
+                        <th>Dibuat pada</th>
+                        <th>Dirubah pada</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if blogs.length < 1 %}
+                        <tr>
+                            <td colspan="7" style="text-align:center">Tidak ada Data Blog</td>
+                        </tr>
+                    {% endif %}
+                    {% for blog in blogs %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ blog.title }}</td>
+                            <td>{{ blog.Category.name }}</td>
+                            {% if blog.isPublished %}
+                                <td><span class="badge text-bg-primary">Published</span></td>
+                            {% else %}
+                                <td><span class="badge text-bg-warning">Archived</span></td>
+                            {% endif %}
+                            <td>{{ blog.createdAt }}</td>
+                            <td>{{ blog.updatedAt }}</td>
+                            <td class="text-right">
+                                {% if blog.isPublished %}
+                                    <a href="/admin/blog/change-status/{{ blog.id }}" class="btn btn-sm btn-warning" title="Archive Selected Blogs">
+                                        <i class="fa-solid fa-archive"></i>
+                                    </a>
+                                {% else %}
+                                    <a href="/admin/blog/change-status/{{ blog.id }}" class="btn btn-sm btn-primary" title="Publish Selected Blogs">
+                                        <i class="fas fa-upload"></i>
+                                    </a>
+                                {% endif %}
+                                <a href="/blog/{{ blog.slug }}" target="_blank" class="btn btn-sm btn-dark" title="Lihat Halaman Blog">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <a href="/admin/blog/edit/{{ blog.id }}" class="btn btn-sm btn-success" title="Edit Selected Blogs">
+                                    <i class="fa-solid fa-pencil"></i>
+                                </a>
+                                <a href="/admin/blog/delete/{{ blog.id }}" class="btn btn-sm btn-danger" name="delete" title="Delete Selected Blogs">
+                                <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro transportation(data) %}
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            Transportation Table
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple" class="table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>Capacity</th>
+                        <th>Category</th>
+                        <th>Route</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for init in data %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ init.name }}</td>
+                            <td>{{ init.capacity }}</td>
+                            <td>{{ init.category }}</td>
+                            <td>{{ init.route }}</td>
+                            <td>
+                                <a href="/admin/transportation/detail/{{ init.id }}" class="btn btn-sm btn-warning" title="Detail Selected Transportation">
+                                    <i class="fa-solid fa-file"></i>
+                                </a>
+                                <a onclick="deleteTransportation('{{ init.id }}')" class="btn btn-sm btn-danger" title="Delete Selected Transportation">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro acomodation(data) %}
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            Acomodation Table
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple" class="table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Description</th>
+                        <th>Facility</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for init in data %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ init.name }}</td>
+                            <td>{{ init.address }}</td>
+                            <td>{{ init.desc }}</td>
+                            <td>{{ init.fasility }}</td>
+                            <td>
+                                <a href="/admin/acomodation/detail/{{ init.id }}" class="btn btn-sm btn-warning" title="Detail Selected Restaurant">
+                                    <i class="fa-solid fa-file"></i>
+                                </a>
+                                <a onclick="deleteAcomodation('{{ init.id }}')" class="btn btn-sm btn-danger" title="Delete Selected Restaurant">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro restaurant(data) %}
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            Restaurant Table
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple" class="table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Address</th>
+                        <th>Type</th>
+                        <th>Service</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for init in data %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            <td>{{ init.name }}</td>
+                            <td>{{ init.desc }}</td>
+                            <td>{{ init.address }}</td>
+                            <td>{{ init.cook }}</td>
+                            <td>{{ init.service }}</td>
+                            <td>
+                                <a href="/admin/restaurant/detail/{{ init.id }}" class="btn btn-sm btn-warning" title="Detail Selected Restaurant">
+                                    <i class="fa-solid fa-file"></i>
+                                </a>
+                                <a onclick="deleteRestaurant('{{ init.id }}')" class="btn btn-sm btn-danger" title="Delete Selected Restaurant">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endmacro %}

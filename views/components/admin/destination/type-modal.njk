@@ -1,0 +1,84 @@
+<!-- Modal "List Type" -->
+<div class="modal fade" id="listCategory" aria-labelledby="listCategoryLabel" tabindex="-1" aria-hidden="true">
+<div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="listCategoryLabel">List Type</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <!-- Modal Body -->
+        <div class="modal-body" x-data="typeData()" x-init="fetchData()">
+            <!-- Table of existing types -->
+            <template x-if="data && data.length > 0">
+                <table class="table table-striped">
+                    <!-- Table Header -->
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Type Destination</th>
+                            <th scope="col">Total Destination</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <!-- Table Body -->
+                    <tbody>
+                        <template x-for="(data, index) in data" :key="data.id">
+                            <tr>
+                                <th x-text="index + 1"></th>
+                                <td x-text="data.name"></td>
+                                <td x-text="data.qtyDestination"></td>
+                                <td>
+                                    <!-- Buttons for actions -->
+                                    <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editUserModal" @click="getDetail('{{ user.userId }}')">
+                                        <i class="fa-solid fa-pencil"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-danger" x-on:click="deleteType(data.id)" name="delete">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </template>
+            <template x-else>
+                <p>Data Destinasi tidak ada</p>
+            </template>
+
+
+            <!-- Button "Create New Type" -->
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <button type="button" class="btn btn-primary my-4" data-bs-toggle="modal" data-bs-target="#addType">Create New Type</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- Modal "Create New Type" -->
+<div class="modal fade" id="addType" aria-labelledby="addTypeLabel" tabindex="-1" aria-hidden="true" x-data="typeData()">
+<div class="modal-dialog modal-lg modal-dialog-centered" >
+    <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="addTypeLabel">Create New Type</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <!-- Modal Body (Form for creating new type) -->
+        <div class="modal-body">
+            <!-- Example form for creating new type -->
+            <form>
+                <div class="mb-3">
+                    <label for="newType" class="form-label">Type Name</label>
+                    <input type="text" class="form-control" id="newType" x-model="dataType.name">
+                </div>
+                <!-- Additional form fields as needed -->
+                <button type="submit" class="btn btn-primary" @click="createType()">Create</button>
+            </form>
+        </div>
+    </div>
+</div>
+</div>

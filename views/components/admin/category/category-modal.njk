@@ -1,0 +1,100 @@
+<div class="modal" id="listCategory">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Blog Kategori</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+      </div>
+      <div class="container"></div>
+      <div class="modal-body" x-data="categoryData()" x-init="fetchData()">
+        <a data-bs-toggle="modal" href="#createCategory" class="btn btn-primary">Buat Kategori</a>
+        <br>
+        <!-- Table of existing types -->
+        <template x-if="data && data.length > 0">
+          <table class="table table-striped">
+            <!-- Table Header -->
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <!-- Table Body -->
+            <tbody>
+              <template x-for="(data, index) in data" :key="data.id">
+                <tr>
+                  <th x-text="index + 1"></th>
+                  <td x-text="data.name">/td>
+                  <td>
+                    {# <!-- Buttons for actions -->
+                    <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal"
+                      data-bs-target="#editUserModal" @click="getDetail('{{ user.userId }}')">
+                      <i class="fa-solid fa-pencil"></i>
+                    </button> #}
+                    <button type="button" class="btn btn-sm btn-danger" x-on:click="deleteCategory(data.id)" name="delete">
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+        </template>
+        <template x-else>
+          <p>Data Kategori tidak ada</p>
+        </template>
+      </div>
+      <div class="modal-footer">
+        <a href="#" data-bs-dismiss="modal" class="btn btn-outline-dark">Close</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="createCategory" data-bs-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Create Kategori</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+      </div>
+      <form x-data="categoryData()" @submit.prevent="createBlogCategory">
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="name" class="form-label">Nama Kategori : </label>
+            <input type="text" class="form-control" id="name" x-model="category.name">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a href="#" data-bs-dismiss="modal" class="btn btn-outline-dark">Close</a>
+          <button class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{# <div class="modal" id="editCategory" data-bs-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Edit Kategori</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+      </div>
+      <form x-data="categoryData()" @submit.prevent="createBlogCategory">
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="name" class="form-label">Nama Kategori : </label>
+            <input type="hidden" id="categoryId" name="category.id">
+            <input type="text" class="form-control" id="name" x-model="category.name">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a href="#" data-bs-dismiss="modal" class="btn btn-outline-dark">Close</a>
+          <button class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+</div> #}
+
+</div>

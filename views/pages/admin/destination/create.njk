@@ -1,0 +1,161 @@
+{% extends "layouts/admin/adminLayout.njk" %}
+{% import "components/admin/input.njk" as form %}
+
+{% block content %}
+  <div class="container-fluid px-4">
+    <a href="/admin/destination" class="btn btn-primary mt-4">
+      <i class="fa-solid fa-chevron-left"></i>
+      <span>Back</span>
+    </a>
+    <h3 class="my-2">Create Destination</h3>
+    <form x-data="createDestination(event)" @submit.prevent="submit">
+      <div class="col-md-8">
+        {{ form.input("text", "destination", "Destination", "dataDestination.name") }}
+
+        <div class="form-floating my-3" x-data="typeData()">
+          <select class="form-select" id="type" aria-label="Type" data-placeholder="Select Type Trip" x-model="type" x-init="fetchType()" multiple>
+            <template x-for="(item, index) in data" :key="item.id">
+                <option x-text="item.name" :value="item.id">
+                </option>
+            </template>
+          </select>
+          <label for="type">Type</label>
+        </div>
+
+        <div class="row mb-4">
+          <div class="col-12">
+            <label for="formFile" class="form-label">Image</label>
+            <input class="form-control" type="file" id="images" x-model="dataDestination.images">
+          </div>
+        </div>
+        {{ form.dropdown("city", "City", data.city, "dataDestination.district_city" ) }}
+        {{ form.textarea("description", "Description", "dataDestination.description") }}
+        {{ form.textarea("address", "Address", "dataDestination.address") }}
+        <div class="row">
+          <div class="col-6">
+            <div class="form-floating">
+              {{ form.input("text", "latitude", "Latitude", "dataDestination.lat") }}
+            </div>
+          </div>
+          <div class="col-6">
+            {{ form.input("text", "longitude", "Longitude", "dataDestination.long") }}
+          </div>
+        </div>
+        {{ form.dropdown("status", "Status", ['Open', 'Close'], "dataDestination.status" ) }}
+        <button type="submit" class="btn btn-primary my-3">Submit</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    $(document).ready(function(){
+      $('#type').select2( {
+          theme: "bootstrap-5",
+          width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+          placeholder: $( this ).data( 'placeholder' ),
+      } );
+    });
+
+    $("#latitude").change(()=>{
+      const lat = parseFloat($("#latitude").val().replace(",", "."));
+      if(isNaN(lat)){
+        alert("Sorry, latitude must be an number");
+        $("#latitude").focus();
+        $("#latitude").val("");
+      }
+    })
+
+    $("#longitude").change(()=>{
+      const long = parseFloat($("#longitude").val().replace(",", "."));
+      if(isNaN(long)){
+        alert("Sorry, longitude must be an number");
+        $("#longitude").focus();
+        $("#longitude").val("");
+      }
+    })
+
+    function createDestination() {
+      return {
+        dataDestination: {
+          name: null,
+          district_city: null,
+          images: null,
+          description: null,
+          address: null,
+          lat: null,
+          long: null,
+          status: null,
+          typeTrip: []
+        },
+        
+        submit() {
+          this.dataDestination.typeTrip = $("#type").val();
+          const fileInput = document.getElementById('images');
+          const file = fileInput.files[0];
+
+          const formData = new FormData();
+          formData.append('images', file);
+
+          formData.append('data', JSON.stringify(this.dataDestination));
+
+          fetch('/admin/destination/api/add', {
+            method: 'POST',
+            body: formData
+          })
+          .then((response) => {
+            // if (!response.ok) {
+            //     throw new Error('Network response was not ok');
+            // }
+            return response.json();
+          })
+          .then((data) => {
+            console.log({ data });
+            alert(data.status.message);
+            if(data.status.code == 201){
+              window.location.href = "/admin/destination";
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+        }
+      };
+    }
+
+    function typeData() {
+        return {
+            data: [],
+            fetchType() {
+          fetch("/admin/trip_type/api/list", {
+            method: "GET",
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          })
+          .then((response) => response.json())
+          .then((data) => {
+            this.data = data.data; // Menggunakan `this.data` untuk menyimpan data tipe
+          })
+          .catch((error) => {
+            console.error('Error fetching destination Type:', error);
+          });
+        }
+        };
+    }
+    // const typeData = () => {
+    //         return {
+    //             tableData: [],
+    //             fetchType() {
+    //                 fetch(`/admin/trip_type/api/list`)
+    //                     .then((response) => response.json())
+    //                     .then((data) => {
+    //                         this.tableData = data.data;
+    //                     })
+    //                     .catch((error) => {
+    //                         console.log('Error Fetching Type: ' + error)
+    //                     });
+    //             },
+    //         };
+    //     };
+  </script>
+{% endblock %}

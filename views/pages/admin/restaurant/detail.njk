@@ -1,0 +1,121 @@
+{% extends "layouts/admin/adminLayout.njk" %} {% block content %}
+<div class="container-fluid px-4">
+  <a href="/admin/restaurant" class="btn btn-primary mt-4">
+    <i class="fa-solid fa-chevron-left"></i>
+    <span>Back</span>
+  </a>
+  <a href="/admin/restaurant/edit/{{ resto.id }} " class="btn btn-primary mt-4">
+    <span>Edit</span>
+    <i class="fa-solid fa-chevron-right"></i>
+  </a>
+  <h3 class="my-2"><i class="fas fa-utensils"></i> Restaurant Detail</h3>
+  <main id="content" class="site-main mt-3">
+    <section class="career-inner-page">
+      <!-- ***career section html start form here*** -->
+      <div class="inner-career-detail-wrap">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-4">
+              <figure class="figure-caption">
+                <img src="{{ resto.images }}" class="figure-img img-fluid rounded" />
+              </figure>
+            </div>
+            <div class="col">
+              <div class="tab-section">
+                <div class="tab-container">
+                  <div class="responsive-tabs">
+                    <div id="nav-tab-content" class="tab-content" role="tablist">
+                      <div id="pane-A" class="card tab-pane fade show active" role="tabpanel" aria-labelledby="tab-A">
+                        <div class="card-header" role="tab" id="heading-A">
+                          <h5 class="mb-0">{{ resto.name }}</h5>
+                        </div>
+                        <div id="collapse-A" class="collapse show" data-bs-parent="#nav-tab-content" role="tabpanel" aria-labelledby="heading-A">
+                          <div class="card-body">
+                            <table class="table table-striped-columns">
+                              <tbody>
+                                <tr>
+                                  <th>ID</th>
+                                  <td>{{ resto.id }}</td>
+                                </tr>
+                                <tr>
+                                  <th>Name</th>
+                                  <th>{{ resto.name }}</th>
+                                </tr>
+                                <tr>
+                                  <th>Address</th>
+                                  <td>{{ resto.address }}</td>
+                                </tr>
+                                <tr>
+                                  <th>Price</th>
+                                  <td>Rp. {{ resto.price }}</td>
+                                </tr>
+                                <tr>
+                                  <th>Description</th>
+                                  <td>{{ resto.desc }}</td>
+                                </tr>
+                                <tr>
+                                  <th>Latitude</th>
+                                  <td>{{ resto.lat }}</td>
+                                </tr>
+                                <tr>
+                                  <th>Longitude</th>
+                                  <td>{{ resto.long }}</td>
+                                </tr>
+
+                                <tr>
+                                  <th>Type Cook</th>
+                                  <td>{{ resto.cook }}</td>
+                                </tr>
+                                <tr>
+                                  <th>Service</th>
+                                  <td>{{ resto.service }}</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ***career section html start form here*** -->
+    </section>
+  </main>
+</div>
+{#
+<script>
+  let url = new URL(window.location.href);
+  let parts = url.pathname.split("/");
+  let restaurantId = parts[parts.length - 1];
+  console.log({ restaurantId });
+
+  function init() {
+    return {
+      data: {},
+      detailData: async function () {
+        try {
+          const request = await fetch(`/admin/restaurant/api/detail/${restaurantId}`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+          if (!request.ok) {
+            throw new Error("Failed to fetch Restaurant data");
+          }
+          const response = await request.json();
+          this.data = response.data;
+          console.log("Restaurant Data:", this.data);
+        } catch (error) {
+          console.error("Error fetching Restaurant data:", error);
+        }
+      },
+    };
+  }
+</script>
+#} {% endblock %}

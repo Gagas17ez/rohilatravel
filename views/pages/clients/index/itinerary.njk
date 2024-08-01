@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/clients/css/bootstrap.min.css" rel="stylesheet">
+    <script defer src="/clients/js/alpine.js"></script>
+    <title>Document</title>
+</head>
+
+<body class="bg-light position-relative">
+
+    <div x-data="{ openChat: false }"
+        class="position-fixed bottom-0 end-0 z-3 pe-auto d-flex flex-column gap-3 align-items-end"
+        style="margin-right: 16px; margin-bottom: 16px;">
+        <div x-show="openChat" class="bg-white border rounded" style="width: 480px; height: 560px; margin-right: 28px;">
+            <div class="d-flex flex-column" style="width: 100%; height: 100%">
+                <div class="m-3 d-flex flex-column" style="width: auto; height: 100%; overflow: auto;">
+                    <p class="bg-dark-subtle p-2 rounded me-auto" style="width: 70%;">lorem Impuslorem Impuslorem
+                        Impuslorem Impuslorem Impuslorem.</p>
+                    <p class="bg-primary p-2 rounded ms-auto" style="width: 70%;">lorem Impuslorem Impuslorem Impuslorem
+                        Impuslorem Impuslorem.</p>
+                    <p class="bg-dark-subtle p-2 rounded me-auto" style="width: 70%;">lorem Impuslorem Impuslorem
+                        Impuslorem Impuslorem Impuslorem.</p>
+                    <p class="bg-primary p-2 rounded ms-auto" style="width: 70%;">lorem Impuslorem Impuslorem Impuslorem
+                        Impuslorem Impuslorem.</p>
+                    <p class="bg-dark-subtle p-2 rounded me-auto" style="width: 70%;">lorem Impuslorem Impuslorem
+                        Impuslorem Impuslorem Impuslorem.</p>
+                    <p class="bg-primary p-2 rounded ms-auto" style="width: 70%;">lorem Impuslorem Impuslorem Impuslorem
+                        Impuslorem Impuslorem.</p>
+                    <p class="bg-dark-subtle p-2 rounded me-auto" style="width: 70%;">lorem Impuslorem Impuslorem
+                        Impuslorem Impuslorem Impuslorem.</p>
+                    <p class="bg-primary p-2 rounded ms-auto" style="width: 70%;">lorem Impuslorem Impuslorem Impuslorem
+                        Impuslorem Impuslorem.</p>
+                    <p class="bg-dark-subtle p-2 rounded me-auto" style="width: 70%;">lorem Impuslorem Impuslorem
+                        Impuslorem Impuslorem Impuslorem.</p>
+                    <p class="bg-primary p-2 rounded ms-auto" style="width: 70%;">lorem Impuslorem Impuslorem Impuslorem
+                        Impuslorem Impuslorem.</p>
+                </div>
+                <div class="p-3 bg-dark-subtle">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Message" aria-label="Message"
+                            aria-describedby="sendMessage">
+                        <button class="btn btn-primary py-2 px-4" type="button" id="sendMessage">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <img x-on:click="openChat = !openChat" src="/clients/images/chat.png" alt="Chat Bot Image"
+            style="width: 56px; height: 56px;">
+    </div>
+
+    <nav class="navbar fixed-top bg-light border-bottom">
+        <div class="container">
+            <a class="navbar-brand d-flex" href="/">
+                <img src="/clients/images/favicon.png" alt="Logo" style="width: 40px; height: 40px;">
+                <span style="margin: auto 0;">Rusli Travel</span>
+            </a>
+            <ul class="navbar-nav me-auto mx-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="/itenary">Rencana Perjalanan</a>
+                </li>
+            </ul>
+            <a class="btn btn-sm px-3 rounded-pill btn-outline-primary" href="/login">Login</a>
+        </div>
+    </nav>
+
+    <div class="container my-5 pt-5">
+        <div class="rounded position-relative" style="width: 100%; height: 400px;">
+            <img src="/clients/images/bg-rusli.jpg" alt="Background" class="img-fluid rounded position-absolute"
+                style="width: 100%; height: 100%; object-fit: cover; filter: brightness(30%);">
+            <div class="position-relative z-1 d-flex flex-column justify-content-center"
+                style="width: 100%; height: 100%;">
+                <h1 class="text-center text-white " style="width: 70%; margin: 0 auto;">Rencanakan Liburanmu dengan
+                    Sistem kecerdasan Buatan Kami hanya dalam hitungan menit.</>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mb-5">
+        <h1 class="fs-4 text-center mb-4">Buat Rencana Perjalananmu</h1>
+        <form>
+
+            <div class="row">
+                <div class="col-8">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="lokasi"
+                            placeholder="Cari Kota atau Daerah Distinasi Wisata" required>
+                        <label for="floatingInputTempat">Kota atau Daerah Distinasi Wisata</label>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-floating mb-3">
+                        <input type="number" class="form-control" id="jumlah_orang" placeholder="Jumlah Wisatawan">
+                        <label for="floatingInputJumlah">Jumlah Wisatawan</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-5">
+                    <div class="form-floating mb-3">
+                        <select class="form-select" id="mata_uang" aria-label="Mata Uang">
+                            <option value="" hidden>Pilih Mata Uang</option>
+                            <option value="IDR">Indonesia Rupiah</option>
+                            <option value="USD">US Dollar</option>
+                            <option value="JPY">Japan Yen</option>
+                        </select>
+                        <label for="floatingSelect">Mata Uang</label>
+                    </div>
+                </div>
+                <div class="col-7">
+                    <div class="form-floating mb-3">
+                        <input type="number" class="form-control" id="budget" placeholder="Biaya Perkiraan">
+                        <label for="floatingInputBiaya">Biaya Perkiraan</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-floating mb-3">
+                        <select class="form-select" id="musim" aria-label="Musim">
+                            <option value="" hidden>Pilih Musim</option>
+                            <option value="semi">Musim Semi</option>
+                            <option value="panas">Musim Panas</option>
+                            <option value="gugur">Musim Gugur</option>
+                            <option value="dingin">Musim Dingin</option>
+                            <option value="kemarau">Musim Kemarau</option>
+                            <option value="hujan">Musim Hujan</option>
+                        </select>
+                        <label for="floatingSelect">Musim</label>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-floating mb-3">
+                        <input type="number" class="form-control" id="lama_perjalanan"
+                            placeholder="Lama Liburan (hari)">
+                        <label for="floatingInputHari">Lama Liburan (hari)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-floating mb-3">
+                        <select class="form-select" id="tipe_perjalanan" aria-label="Tipe Perjalanan">
+                            <option value="" hidden>Pilih Tipe Perjalanan</option>
+                            <option value="agama/spiritual">Agama/Spiritual</option>
+                            <option value="alam">Alam</option>
+                            <option value="belajar/kerja">Belajar/Kerja</option>
+                            <option value="budaya">Budaya</option>
+                            <option value="kehidupan malam">Kehidupan Malam</option>
+                            <option value="keluarga">Keluarga</option>
+                            <option value="kuliner">Kuliner</option>
+                            <option value="pertuangan">Pertualangan</option>
+                            <option value="relaksasi">Relaksasi</option>
+                            <option value="sukarela">Sukarela</option>
+                        </select>
+                        <label for="floatingSelectTipe">Tipe Liburan</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-floating mb-3">
+                        <select class="form-select" id="transportasi" aria-label="Mode Transportasi">
+                            <option value="" hidden>Pilih Transportasi</option>
+                            <option value="apa saja">Bebas</option>
+                            <option value="jalan kaki">Jalan Kaki</option>
+                            <option value="mobil/motor pribadi">Mobil/Motor Pribadi</option>
+                            <option value="mobil/motor rental">Mobil/Motor Rental</option>
+                            <option value="pesawat">Pesawat</option>
+                            <option value="umum">Kendaraan Umum</option>
+                            <option value="sepeda">Sepeda</option>
+                        </select>
+                        <label for="floatingSelectTransportasi">Mode Transportasi</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <button id="btn-plan" onclick="generateItinerary()" type="button" class="btn btn-primary py-2"
+                        style="width: 100%;">
+                        <img src="/clients/images/loading.gif" alt="loading" width="23px"
+                            class="mx-2 d-none"><span>Mulai Merencanakan</span>
+                    </button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+    <div id="result" class="container bg-dark-subtle rounded py-4 px-5 mb-5 d-none"></div>
+
+    <div class="bg-dark-subtle">
+        <div class="container">
+            <div class="row py-5">
+                <div class="col d-flex flex-column gap-3">
+                    <h1 class="fs-5">Rusli Travel</h1>
+                    <div class="d-flex flex-column gap-0">
+                        <span>Jl. Pahlawan No.17</span>
+                        <span>Kebon Jeruk</span>
+                        <span>Kota Jakarta Barat</span>
+                        <span>Daerah Khusus Ibukota Jakarta</span>
+                    </div>
+                    <div class="d-flex flex-column gap-0">
+                        <span>Phone: +62 821 2560 9413</span>
+                        <span>Email: ruslitravel@gmail.com</span>
+                    </div>
+                </div>
+
+                <div class="col d-flex flex-column gap-3">
+                    <h1 class="fs-5">Layanan Kami</h1>
+                    <div class="d-flex flex-column gap-2">
+                        <a class="link-opacity-100-hover text-body" href="#">Layanan 1</a>
+                        <a class="link-opacity-100-hover text-body" href="#">Layanan 2</a>
+                        <a class="link-opacity-100-hover text-body" href="#">Layanan 3</a>
+                        <a class="link-opacity-100-hover text-body" href="#">Layanan 4</a>
+                        <a class="link-opacity-100-hover text-body" href="#">Layanan 5</a>
+                    </div>
+                </div>
+
+                <div class="col d-flex flex-column gap-3">
+                    <h1 class="fs-5">Media Sosial Kami</h1>
+                    <div class="d-flex flex-row gap-2">
+                        <img src="/clients/images/icons8-facebook-64.png" style="width: 36px; height: 36px;"
+                            alt="Facebook">
+                        <img src="/clients/images/icons8-twitter-64.png" style="width: 36px; height: 36px;"
+                            alt="Twitter">
+                        <img src="/clients/images/icons8-instagram-64.png" style="width: 36px; height: 36px;"
+                            alt="Instagram">
+                        <img src="/clients/images/icons8-tiktok-64.png" style="width: 36px; height: 36px;" alt="Tiktok">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/clients/js/bootstrap.bundle.min.js"></script>
+    <script src="/clients/js/jquery.js"></script>
+    <script src="/clients/js/itinerary.js"></script>
+
+</body>
+
+</html>

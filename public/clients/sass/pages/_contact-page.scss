@@ -1,0 +1,109 @@
+.inner-contact-wrap {
+	padding-bottom: 55px;
+	.contact-map {
+		iframe {
+			display: block;
+		}
+		@include border-radius(25px);
+		overflow: hidden;
+	}
+	.social-icon {
+		li {
+			margin: 0 5px;
+		}
+		a {
+			background-color: $primary-color;
+			color: $light-color;
+			@include border-radius(100%); 
+			display: block;
+			text-align: center;
+			width: 35px;
+			height: 35px;
+			line-height: 35px;
+		}
+	}
+	@include bp(xl) {
+		.row {
+			margin-left: -25px;
+			margin-right: -25px;
+			[class*="col-"] {
+				padding-left: 25px; 
+				padding-right: 25px; 
+			}
+		}
+	}
+	@include bp(sms) {
+		padding-bottom: 25px;
+	}
+}
+.contact-from-wrap {
+	@include border-radius(25px);
+	padding: 60px 40px;
+	.contact-from {
+		label {
+			color: $light-color;
+			margin-bottom: 8px;
+		}
+		p {
+			margin-bottom: 30px;
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+		input {
+			&:not([type="submit"]):not([type="checkbox"]):not([type="radio"]){
+				width: 100%;
+			}
+			&[type="submit"] {
+				border: 2px solid $light-color;
+				width: 100%;
+				padding: 15px 30px;
+				text-align: center;
+				&:hover {
+					border-color: $hover-color;
+				}
+			}
+		}
+	}
+	@include bp(lgx) {
+		margin-top: 40px;
+	}
+}
+.contact-details-section {
+	padding-top: 100px;
+	padding-bottom: 70px;
+	.border-icon-box {
+		border: 1px solid rgba(58, 120, 201, 0.16);
+		@include border-radius(25px);
+		padding-top: 40px;
+		padding-bottom: 40px;
+	}
+	.icon-box {
+		.box-icon {
+			height: 80px;
+			width: 80px;
+			line-height: 80px;
+		}
+		ul {
+			margin: 0;
+			padding: 0;
+		}
+		li {
+			list-style: none;
+			margin-bottom: 5px;
+			&:last-child {
+				margin-bottom: 0;
+			}
+			a {
+				color: #626672;
+				&:hover {
+					color: $hover-color;
+				}
+			}
+		}
+	}
+	@include bp(smx) {
+		padding-top: 60px;
+		padding-bottom: 30px;
+	}
+}

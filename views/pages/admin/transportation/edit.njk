@@ -1,0 +1,32 @@
+{% extends "layouts/admin/adminLayout.njk" %} {% import "components/admin/input.njk" as form %} {% block content %}
+<div class="container-fluid px-4" x-data="" x-init="">
+  <a href="/admin/transportation/detail/{{ trans.id }}" class="btn btn-primary mt-4">
+    <i class="fa-solid fa-chevron-left"></i>
+    <span>Back</span>
+  </a>
+  <h3 class="my-2">Edit Transportation</h3>
+  <div class="card card-default card-body">
+    <div class="row p-1">
+      <form action="/admin/transportation/api/update/{{trans.id}}" enctype="multipart/form-data" method="POST">
+        {{ form.editInput("text", "name", "Name", trans.name) }}
+        {{ form.editTextarea("desc", "Description", trans.desc) }}
+        {{ form.editInput("number", "Capacity", "Capacity", trans.capacity) }}
+        {{ form.editInput("number", "price", "Price", trans.price) }}
+        {{ form.editDropdown("category", "Category", ["planes", "bus", "train", "travel", "bikes/car rental", "ship"], trans.category) }}
+        {{ form.editInput("text", "route", "Route", trans.route) }}
+        {{ form.editInput("text", "fasility", "Fasility", trans.fasility) }}
+
+        <div class="mb-3">
+          <div class="col-md-4">
+            <label for="images" class="form-label">Image : </label>
+            <input type="file" class="form-control" id="images" name="images" values="{{ trans.images }}" />
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Simpan</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

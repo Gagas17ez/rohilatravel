@@ -1,0 +1,158 @@
+{% extends "layouts/admin/adminLayout.njk" %}
+{% import "components/admin/input.njk" as form %}
+
+{% block content %}
+    <div class="container-fluid px-4">
+        <a href="/admin/package/detail/{{packagesTour.id}}" class="btn btn-primary mt-4">
+            <i class="fa-solid fa-chevron-left"></i>
+            <span>Back</span>
+        </a>
+        <h3 class="my-2">Edit Package</h3>
+        <form x-data="createPaket(event)" @submit.prevent="submit">
+            <div class="col-md-8">
+              {{ form.editInput("text", "title", "Title", packagesTour.title) }}
+
+              <div class="form-floating my-3">
+                <select class="form-select" id="destination" aria-label="Destination" data-placeholder="Select Destination" multiple>
+                  {% for item in dest %}
+                    {% if packagesTour.destinationId.includes(item.id) %}
+                      <option value="{{ item.id }}" selected>{{ item.name }}</option>
+                    {% else %}
+                      <option value="{{ item.id }}">{{ item.name }}</option>
+                    {% endif %}
+                  {% endfor %}
+                </select>
+                <label for="destination">Destination</label>
+              </div>
+
+              <div class="form-floating my-3">
+                <select class="form-select" id="acomodation" aria-label="Acomodation" data-placeholder="Select Acomodation" multiple>
+                  {% for item in hotel %}
+                    {% if packagesTour.acomodationId.includes(item.id) %}
+                      <option value="{{ item.id }}" selected>{{ item.name }}</option>
+                    {% else %}
+                      <option value="{{ item.id }}">{{ item.name }}</option>
+                    {% endif %}
+                  {% endfor %}
+                </select>
+                <label for="acomodation">Acomodation</label>
+              </div>
+
+              <div class="form-floating my-3">
+                <select class="form-select" id="transportation" aria-label="Transportation" data-placeholder="Select Transportation" multiple>
+                  {% for item in transport %}
+                    {% if packagesTour.transportationId.includes(item.id) %}
+                      <option value="{{ item.id }}" selected>{{ item.name }}</option>
+                    {% else %}
+                      <option value="{{ item.id }}">{{ item.name }}</option>
+                    {% endif %}
+                  {% endfor %}
+                </select>
+                <label for="transportation">Transportation</label>
+              </div>
+
+              <div class="form-floating my-3">
+                <select class="form-select" id="restaurant" aria-label="Restaurant" data-placeholder="Select Restaurant" multiple>
+                  {% for item in resto %}
+                    {% if packagesTour.restaurantId.includes(item.id) %}
+                      <option value="{{ item.id }}" selected>{{ item.name }}</option>
+                    {% else %}
+                      <option value="{{ item.id }}">{{ item.name }}</option>
+                    {% endif %}
+                  {% endfor %}
+                </select>
+                <label for="restaurant">Restaurant</label>
+              </div>
+      
+              <div class="row mb-4">
+                <div class="col-12">
+                  <label for="formFile" class="form-label">Image</label><br>
+                  <img src="/uploads/{{packagesTour.images}}" alt="images" width="150px" class="mb-2">
+                  <input class="form-control" type="file" id="images" x-model="paket.images">
+                </div>
+              </div>
+
+              {{ form.editInput("number", "duration", "Duration (Day)", packagesTour.duration) }}
+              {{ form.editInput("number", "pax", "Pax (People)", packagesTour.pax) }}
+              {{ form.editInput("number", "price", "Price", packagesTour.price) }}
+              {{ form.editTextarea("desc", "Description", packagesTour.desc) }}
+              {{ form.editTextarea("benefit", "Benefit", packagesTour.benefit) }}
+              {{ form.editTextarea("itinerary", "Itinerary", packagesTour.itinerary) }}
+              {{ form.editTextarea("policy", "Policy", packagesTour.policy) }}
+              {{ form.editDropdown("status", "Status", ['Ready', 'Closed'], packagesTour.status) }}
+
+              <button type="button" class="btn btn-primary my-3" onclick="update(`{{packagesTour.id}}`)">Submit</button>
+            </div>
+          </form>
+    </div>
+    <script>
+        $(document).ready(function(){
+          $('#destination').select2( {
+              theme: "bootstrap-5",
+              width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+              placeholder: $( this ).data( 'placeholder' ),
+          });
+          $('#acomodation').select2( {
+              theme: "bootstrap-5",
+              width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+              placeholder: $( this ).data( 'placeholder' ),
+          });
+          $('#transportation').select2( {
+              theme: "bootstrap-5",
+              width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+              placeholder: $( this ).data( 'placeholder' ),
+          });
+          $('#restaurant').select2( {
+              theme: "bootstrap-5",
+              width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+              placeholder: $( this ).data( 'placeholder' ),
+          });
+        });
+    
+        function update(id) {
+          const data = {};
+          
+          data.title = $("#title").val();
+          data.duration = $("#duration").val();
+          data.pax = $("#pax").val();
+          data.price = $("#price").val();
+          data.desc = $("#desc").val();
+          data.benefit = $("#benefit").val();
+          data.itinerary = $("#itinerary").val();
+          data.policy = $("#policy").val();
+          data.status = $("#status").val();
+          data.destinationId = $("#destination").val();
+          data.acomodationId = $("#acomodation").val();
+          data.transportationId = $("#transportation").val();
+          data.restaurantId = $("#restaurant").val();
+
+          const fileInput = document.getElementById('images');
+          const file = fileInput.files[0];
+
+          const formData = new FormData();
+          formData.append('images', file);
+          formData.append('data', JSON.stringify(data));
+
+          fetch(`/admin/package/api/update/${id}`, {
+            method: 'PATCH',
+            body: formData
+          })
+          .then((response) => {
+            // if (!response.ok) {
+            //     throw new Error('Network response was not ok');
+            // }
+            return response.json();
+          })
+          .then((data) => {
+            console.log({ data });
+            alert(data.status.message);
+            if(data.status.code == 201){
+              window.location.href = `/admin/package/detail/${id}`;
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+        }
+      </script>
+{% endblock %}

@@ -1,0 +1,130 @@
+{% macro card1(title, description, benefit, time, pax, status, price, img, link) %}
+    <article class="package-item">
+        <figure class="package-image" style="background-image: url({{img}});">
+        </figure>
+        <div class="package-content">
+            <h3>
+                <a href="{{link}}">
+                    {{title}}
+                </a>
+            </h3>
+            <p>{{description}}</p>
+            <div class="review-area my-2">
+                <span class="review-text">{{benefit}}</span>
+            </div>
+            <div class="package-meta">
+                <ul>
+                    <li>
+                        <i class="fas fa-clock"></i>
+                        {{time}}
+                    </li>
+                    <li>
+                        <i class="fas fa-user-friends"></i>
+                        pax: {{pax}}
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="package-price">
+            <div class="review-area">
+                <span class="review-text">{{status}}</span>
+            </div>
+            <h6 class="price-list">
+                <span>${{price}}</span>
+            </h6>
+            <a href="/contactUs" class="outline-btn outline-btn-white">Book now</a>
+        </div>
+    </article>
+{% endmacro %}
+
+{% macro card2(discount,time, pax, place, title, description, actualPrice, promo, img="/clients/images/img8.jpg") %}
+    <div class="col-md-6">
+    <article class="offer-item" style="background-image: url({{img}});">
+            <div class="offer-badge">
+                UPTO <span>{{discount}}%</span> off
+            </div>
+            <div class="offer-content">
+                <div class="package-meta">
+                    <ul>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            {{time}}
+                        </li>
+                        <li>
+                            <i class="fas fa-user-friends"></i>
+                            pax: {{pax}}
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            {{place}}
+                        </li>
+                    </ul>
+                </div>
+                <h3>
+                    <a href="#">{{title}}</a>
+                </h3>
+                <p>
+                    {{description}}
+                </p>
+                <div class="price-list">
+                    price:
+                    <del>${{actualPrice}} </del>
+                    <ins>${{promo}}</ins>
+                </div>
+                <a href="#" class="round-btn">Book Now</a>
+            </div>
+        </article>
+    </div>
+{% endmacro %}
+
+{% macro card3( rate, location, name, desctiption, link, img='/clients/images/bg-rusli.jpg') %}
+    <div class="col-lg-4 col-md-6 ">
+        <article class="destination-item shadow p-3 mb-5 bg-body" style="background-image: url(/uploads/{{img}});">
+            <div class="destination-content shadow p-3 mb-5">
+                <div class="rating-start-wrap shadow px-3">
+                    <div class="rating-start">
+                        <span style="width: {{rate}}%"></span>
+                    </div>
+                </div>
+                <span class="cat-link">
+                    <a href="#">{{location}}</a>
+                </span>
+                <h3>    
+                    <a href="{{link}}">{{name}}</a>
+                </h3>
+                <p>{{desctiption}}</p>
+            </div>
+        </article>
+    </div>
+{% endmacro %}
+
+
+{% macro cardBlog(title, category, description, link, comment, img="/clients/images/img4.jpg") %}
+    <div class="grid-item col-md-6">
+        <article class="post">
+            <figure class="featured-post">
+                <img src="{{img}}" alt="" style="width: 100%; height: 100%; object-fit: cover;">
+            </figure>
+            <div class="post-content">
+                <div class="cat-meta">
+                    <a href="/blog">{{category}}</a>
+                </div>
+                <h3><a href="{{link}}">{{title}}</a></h3>
+                <p>{{description}}</p>
+                <div class="post-footer d-flex justify-content-between align-items-center">
+                    <div class="post-btn">
+                    <a href="{{link}}" class="round-btn">Read More</a>
+                    </div>
+                    {# <div class="meta-comment">
+                    <a href="blog-archive.html">
+                        <i aria-hidden="true" class="fas fa-comment"></i>
+                        <span>{{comment}}</span>
+                    </a>
+                    </div> #}
+                </div>
+            </div>
+        </article>
+    </div>
+{% endmacro %}
+

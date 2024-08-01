@@ -1,0 +1,19 @@
+.inner-testimonial-wrap {
+	padding-bottom: 60px;
+	@include bp(xl) {
+		.row {
+			margin-left: -25px;
+			margin-right: -25px;
+			[class*="col-"] {
+				padding-left: 25px; 
+				padding-right: 25px; 
+			}
+		}
+	}
+	.testimonial-item {
+		margin-bottom: 40px;
+	}
+	@include bp(smx) {
+		padding-bottom: 20px;
+	}
+}

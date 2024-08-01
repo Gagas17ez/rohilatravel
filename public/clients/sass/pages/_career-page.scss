@@ -1,0 +1,121 @@
+.career-item {
+	margin-bottom: 40px;
+	position: relative;
+	text-align: center;
+	.career-image {
+		img {
+			border-radius: 25px;
+		}
+	}
+	.career-content {
+		background-color: $light-color;
+		padding: 25px;
+		border-radius: 25px;
+		position: absolute;
+		bottom: 20px;
+		margin-left: 20px;
+		margin-right: 20px;
+		h3 {
+			line-height: 1.1;
+    		margin-bottom: 10px;
+		}
+		.job-desc {
+			color: $primary-color;
+			display: block;
+			font-size: 13px;
+			line-height: 1.1;
+			margin-bottom: 10px;
+		}
+	}
+}
+.inner-career-wrap {
+	padding-bottom: 60px;
+	.apply-form-container {
+		background-color: rgba($primary-color, 0.8);
+		@include border-radius(25px);
+		padding: 50px;
+		.subtitle,
+		h2, p {
+			color: $light-color;
+		}
+	}
+	form {
+		@include flexbox();
+		@include flex-wrap(wrap);
+		margin: 0 -15px;
+		p {
+			width: 33.33%;
+			padding: 0 15px;
+			margin-bottom: 25px;
+			&.width-5 {
+				width: 50%;
+			}
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+		input {
+			width: 100%;
+		}
+	}
+	@include bp(xl) {
+		.row {
+			margin-left: -25px;
+			margin-right: -25px;
+			[class*="col-"] {
+				padding-left: 25px; 
+				padding-right: 25px; 
+			}
+		}
+	}
+	@include bp(smx) {
+		.apply-form-container {
+			padding: 30px 20px;
+		}
+		form {
+			p {
+				width: 100%;
+				&.width-5 {
+					width: 100%;
+				}
+			}
+		}
+	}
+}
+
+.bg-color-box {
+	background-color: $light-color;
+	@include border-radius(25px);
+	padding: 40px;
+}
+
+.career-inner-page {
+	.iconbox-section {
+		padding-top: 100px;
+		padding-bottom: 60px;
+		@include bp(xl) {
+			.row {
+				margin-left: -25px;
+				margin-right: -25px;
+				[class*="col-"] {
+					padding-left: 25px; 
+					padding-right: 25px; 
+				}
+			}
+		}
+		@include bp(smx) {
+			padding-top: 70px;
+			padding-bottom: 30px;
+		}
+	}
+	.bg-color-box {
+		.box-icon {
+			width: 80px;
+			height: 80px;
+			line-height: 82px;
+		}
+		p {
+			margin-bottom: 0;
+		}
+	}
+}

@@ -1,0 +1,36 @@
+{% extends "layouts/admin/adminLayout.njk" %} {% import "components/admin/input.njk" as form %} {% block content %}
+<div class="container-fluid px-4">
+  <a href="/admin/transportation" class="btn btn-primary mt-4">
+    <i class="fa-solid fa-chevron-left"></i>
+    <span>Back</span>
+  </a>
+  <h3 class="my-2">Create Transportation</h3>
+
+  <div class="card card-default card-body">
+    <div class="row p-1">
+      <form action="/admin/transportation/store" enctype="multipart/form-data" method="POST">
+        <div class="col-md-8">
+          {{ form.input("text", "name", "Name") }}
+          {{ form.textarea("desc", "Desc") }}
+          {{ form.input("number", "capacity", "Capacity") }}
+          {{ form.dropdown("category", "Category", ["planes", "bus", "train", "travel", "bikes/car rental", "ship"]) }}
+          {{ form.input("text", "route", "Route", "data.route") }}
+          {{ form.input("text", "fasility", "Fasility") }}
+          {{ form.input("number", "price", "Price") }}
+
+          <div class="mb-3">
+            <div class="col-md-4">
+              <label for="images" class="form-label">Image : </label>
+              <input type="file" class="form-control" id="images" name="images" required />
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary mt-3">Simpan</button>
+          {# <a href="/admin/transportation" class="btn btn-secondary">Kembali</a> #}
+        </div>
+      </form>
+      
+    </div>
+  </div>
+</div>
+{% endblock %}

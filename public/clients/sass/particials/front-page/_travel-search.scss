@@ -1,0 +1,96 @@
+.home-trip-search {
+	padding: 55px 0 60px;
+	.trip-search-inner {
+		@include align-items(flex-end);
+		@include flex-wrap(wrap);
+	}
+	.group-input {
+		width: 20%;
+		padding: 8px;
+		position: relative;
+		i {
+			position: absolute;
+			bottom: 28px;
+			right: 25px;
+		}
+		&.width-col-1 {
+			width: 100%;
+		}
+	}
+	label {
+		color: $light-color;
+		display: inline-block;
+		line-height: 1;
+		font-size: 15px;
+		margin-bottom: 15px;
+	}
+    input {
+        &:focus {
+            outline: none;
+        }
+        &::placeholder { /* Firefox, Chrome, Opera */ 
+            color: darken($light-color, 40%); 
+        } 
+        &:-ms-input-placeholder { /* Internet Explorer 10-11 */ 
+            color: darken($light-color, 40%); 
+        } 
+
+        &::-ms-input-placeholder { /* Microsoft Edge */ 
+            color: darken($light-color, 40%); 
+        }
+    }
+	select,
+	input {
+        background-color: #F8F8F8;
+        color: #383838;
+        border: none;
+		height: 56px;
+		padding: 0 15px;
+		width: 100%;
+		@include box-shadow(none);
+		line-height: 1.6;
+	}
+	input[type="submit"] {
+		background-color: transparent;
+        border: 1px solid $light-color;
+        color: $light-color;
+		line-height: 1.3;
+		font-weight: 600;
+		margin-bottom: auto;
+		@include transition(all 0.4s);
+		&:hover,
+		&:focus {
+			background-color: $hover-color;
+			border-color: $hover-color;
+			color: $light-color;
+		}
+	}
+	@include bp(sm) {
+		.group-input {
+	    	width: 50%;
+	  	}
+	  	.width-col-3 {
+	  		width: 33.33%;
+	  	}
+	}
+	@media only screen and (min-width: 915px) {
+	  	.group-input {
+	    	width: 20%;
+	  	}
+	}
+	@media only screen and (max-width: 580px) {
+		.group-input {
+	    	width: 100%;
+	    	i {
+				bottom: 23px;
+			}
+	  	}
+	  	select,
+		input {
+			height: 40px;
+		}
+		input[type="submit"] {
+			margin-top: 20px;
+		}
+	}
+}

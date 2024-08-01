@@ -1,0 +1,200 @@
+.cart-list-inner {
+	padding-bottom: 100px;
+	.table {
+		margin-bottom: 60px;
+		border-width: 0 1px 0 1px;
+		border-style: solid;
+		border-color: #dee2e6;
+		thead {
+			tr {
+				th {
+					background-color: $primary-color;
+					color: $light-color;
+					border: none;
+					font-family: $title-font;
+					font-weight: 700;
+					font-size: 15px;
+					padding: 15px;
+				}
+			}
+		}
+		tr {
+			.cartImage {
+				display: block;
+				overflow: hidden;
+				width: 70px;
+				margin-right: 10px;
+			}
+			td {
+				color: #383838;
+				vertical-align: middle;
+				border-bottom: 1px solid #dee2e6;
+				border-top: none;
+				position: relative;
+				padding: 20px;
+				font-size: 16px;
+				.close {
+					color: $primary-color;
+					border: none;
+					background-color: transparent;
+					float: left;
+					position: relative;
+					top: 15px;
+					margin-right: 15px;
+				}
+				&.count-input {
+					div {
+						@include flexbox();
+						@include align-items(center);
+						@include flex-wrap(wrap);
+					}
+					a {
+						@include border-radius(100%);
+						color: #383838;
+						font-size: 10px;
+						display: inline-block;
+						border: 1px solid #e4e4e4;
+						line-height: 41px;
+						height: 41px;
+						width: 40px;
+						text-align: center;
+					}
+				}
+				input {
+					width: 40px;
+					font-size: 16px;
+					height: 41px;
+					text-align: center;
+					color: $title-color;
+					border-width: 1px;
+					border-color: #e4e4e4;
+					border-style: solid;
+					padding: 0;
+					margin: 0 5px;
+				}
+			}
+		}
+		@include bp(smx){
+			display: block;
+			thead, tbody, th, td, tr { 
+		    	display: block; 
+		  	}			  
+		  	thead tr { 
+		    	position: absolute;
+		    	top: -9999px;
+		    	left: -9999px;
+		  	}
+		  
+		  	tr { 
+		  		border: 1px solid #e6e6e6; 
+		  	}
+		 	td { 
+		    	border: none;
+		    	border-bottom: 1px solid #e6e6e6; 
+		    	position: relative;
+		  	}
+		  	td:before { 
+		    	display: block;
+		    	white-space: nowrap;
+		    	content: attr(data-column);
+		    	color: $title-color;
+		    	font-weight: 600;
+		    	margin-bottom: 10px;
+		  	}
+		}
+	}
+	.updateArea {
+		.input-group {
+		    display: inline-block;
+			margin-bottom: 0;
+			width: auto;
+			input {
+				height: 47px;
+			}
+			.form-control {
+				width: auto;
+				display: inline-block;
+				margin-right: 15px;
+				@include bp(mdx) {
+					text-align: center;
+				}
+			}
+		}
+		a {
+			padding: 12px 20px;
+			font-weight: 400;
+			&.update-btn {
+				float: right;
+			}
+		}
+		@include bp(smx) {
+			.input-group {
+				width: 100%;
+				.form-control {
+					margin-right: 0;
+					margin-bottom: 10px;
+					width: 100%;
+				}
+			}
+			a {
+				display: block;
+				text-align: center;
+				margin-bottom: 10px;
+				&.update-btn {
+					float: none;
+				}
+			}
+		}
+	}
+	.totalAmountArea,
+	.updateArea,
+	.checkBtnArea  {
+		display: block;
+		padding: 20px 30px;
+		border-left: 1px solid #dee2e6;
+		border-right: 1px solid #dee2e6;
+		border-bottom: 1px solid #dee2e6;
+		@include clearfix;
+	} 
+	.updateArea {
+		border-top: 1px solid #dee2e6;
+		@include bp(mdx) {
+			text-align: center;
+		}
+		a {
+			&.update-btn {
+				@include bp(mdx) {
+					float: none;
+					margin-top: 15px;
+				}
+				@include bp(smx) {
+					margin-top: 0;
+				}
+			}
+		}
+	}
+	.totalAmountArea {
+		ul {
+			margin: 0;
+			padding: 0;
+			float: right;
+			text-align: right;
+			li {
+				margin-bottom: 10px;
+				strong {
+					font-weight: 600;
+				}
+				span {
+					width: 108px;
+					display: inline-block;
+				}
+				.grandTotal {
+					font-weight: 700;
+				}
+			}
+		}
+	}
+	@include bp(smx) {
+		padding-bottom: 70px;
+	}
+}

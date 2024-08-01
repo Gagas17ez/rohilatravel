@@ -1,0 +1,93 @@
+{% extends "layouts/admin/adminLayout.njk" %}
+{% import "components/admin/data-table.njk" as datatable %}
+
+{% block content %}
+<div class="container-fluid px-4">
+    <h1 class="mt-4 mb-2">Blog Management</h1>
+    <p>Manajemen Blog Artikel Rusli Travel</p>
+
+    <button class="btn btn-primary mb-3" onclick="window.location.href+='/create'">
+        <i class="fas fa-plus-circle"></i> &nbsp;Tambah Blog
+    </button>
+
+    <button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#listCategory">
+        <i class="fas fa-list"></i> &nbsp;Kategori Blog
+    </button>
+
+    {{ datatable.blogs(blogs) }}
+
+    {% include "components/admin/category/category-modal.njk" %}
+</div>
+
+<script>
+    function categoryData() {
+        return {
+            category: {
+                name: null
+            },
+            createBlogCategory: async function () {
+                const request = await fetch("/api/blog-category/create", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(this.category)
+                });
+                const response = await request.json();
+                console.log(request);
+                if (request.status === 201) {
+                    alert("Kategori berhasil dibuat");
+                    window.location.href = "/admin/blog";
+                }
+                if (request.status === 400) {
+                    alert("Kategori tidak boleh kosong");
+                }
+                if (request.status === 500) {
+                    alert("Internal Server Error, check console for more detail");
+                }
+            },
+            data: null,
+            fetchData: async function () {
+                try {
+                    const request = await fetch("/api/blog-category/", {
+                        method: "GET",
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                    const response = await request.json();
+                    this.data = response;
+                } catch (error) {
+                    console.error('Error fetching destination data:', error);
+                }
+            },
+            deleteCategory: async function (id) {
+                if (confirm("Are you sure you want to delete this category?")) {
+                    try {
+                        const response = await fetch("/api/blog-category/delete/" + id, {
+                            method: "DELETE",
+                        });
+
+                        let responseFromServer = await response.json();
+
+                        if (response.ok) {
+                            // Optionally handle success, like updating UI
+                            alert("Kategori berhasil dihapus");
+                            window.location.href = "/admin/blog";
+                        } else {
+                            // Handle server error
+                            alert("Gagal menghapus kategori:", responseFromServer.message)
+                        }
+                    } catch (error) {
+                        // Handle network error
+                        alert("Gagal menghapus kategori, cek konsole untuk melihat error")
+                        console.error("Gagal menghapus kategori:", error.message);
+                    }
+                } else {
+                    return false;
+                }
+            }
+        };
+    }
+</script>
+{% endblock %}

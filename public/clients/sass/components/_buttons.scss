@@ -1,0 +1,91 @@
+%base-button {
+	@include font-size (16);
+	line-height: 1.1;
+	padding: 17px 30px;
+	font-weight: 400;
+	font-family: $primary-font;
+	@include border-radius(25px);
+	text-transform: uppercase;
+	@include bp(smx) {
+		@include font-size(14);
+		padding: 12px 20px;
+	}
+}
+
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+	border: none;
+	background-color: $primary-color;
+	color: $light-color;
+	cursor: pointer;
+	padding: 17px 30px;
+	font-weight: 400;
+	@include border-radius(25px);
+	@include transition(background-color 0.3s);
+    &:hover,
+    &:active,
+    &:focus {
+    	background-color: $hover-color;
+    }
+}
+
+.round-btn {
+	background-color: $primary-color;
+	border: none;
+	@extend %base-button;
+	color: $light-color;
+	display: inline-block;
+	position: relative;
+	@include transition(background-color 0.3s);
+	&:hover,
+	&:focus,
+	&:active {
+		background-color: $hover-color;
+		color: $light-color;
+	}
+}
+
+.outline-btn {
+	padding: 15px 30px;
+	@extend %base-button;
+	border: 2px solid $primary-color;
+	color: $primary-color;
+	display: inline-block;
+	position: relative;
+	@include transition(background-color 0.3s, border-color 0.3s);
+	&:hover,
+	&:focus,
+	&:active {
+		background-color: $hover-color;
+		border-color: $hover-color;
+		color: $light-color;
+	}
+	@include bp(smx) {
+		@include font-size(14);
+		padding: 10px 20px;
+	}
+}
+
+.outline-btn-white {
+	border-color: $light-color;
+	color: $light-color;
+	@include border-radius(25px);
+	&:hover,
+	&:focus {
+		border-color: $hover-color;
+	}
+}
+
+.text-btn {
+	color: $secondary-color;
+	font-weight: 600;
+	position: relative;
+	line-height: 1.3;
+	@include transition(all 0.4s);
+	&:hover,
+	&:focus,
+	&:active {
+		color: $primary-color;
+	}
+}

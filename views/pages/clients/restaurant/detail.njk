@@ -1,0 +1,158 @@
+{% extends "layouts/clients/masterLayout.njk" %}
+
+{% block content %}
+
+    <main id="content" class="site-main">
+    <section class="package-inner-page">
+        <!-- ***Banner Start*** -->
+        <div class="inner-banner-wrap">
+            <div class="inner-baner-container" style="background-image: url(/clients/images/restaurant/2.jpg);">
+                <div class="container">
+                <div class="inner-banner-content">
+                    <h1 class="page-title">Restaurant Detail</h1>
+                </div>
+                </div>
+            </div>
+        </div>
+        <!-- ***Banner End*** -->
+        <!-- ***main start*** -->
+        <div class="inner-package-detail-wrap">
+            <div class="container">
+                <div class="row">
+                {# detail start #}
+                <div class="col-lg-8 primary right-sidebar">
+                    <div class="single-packge-wrap">
+                        <div class="single-package-head d-flex align-items-center">
+                            <div class="package-title">
+                            <h2>{{resto.name}}</h2>
+                            <div class="rating-start-wrap">
+                                <div class="rating-start">
+                                    <span style="width: 80%"></span>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="package-price">
+                            <h6 class="price-list">
+                                Estimation
+                                <span>Rp.{{resto.price}}</span>
+                                / per person
+                            </h6>
+                            </div>
+                        </div>
+                        <div class="package-meta">
+                            <ul>
+                            <li>
+                                <i class="fas fa-clock"></i>
+                                7D/6N
+                            </li>
+                            <li>
+                                <i class="fas fa-utensils"></i>
+                                {{resto.cook}}
+                            </li>
+                            <li>
+                                <i class="fas fa-map-marker-alt"></i>
+                                {{resto.address}}
+                            </li>
+                            </ul>
+                        </div>
+                        <figure class="single-package-image">
+                            <img src="/uploads/{{resto.images}}" alt="">
+                        </figure>
+                        <div class="package-content-detail">
+                            <article class="package-overview">
+                            <h3>DESCRIPTION :</h3>
+                            <p>{{resto.desc}}</p>
+                            </article>
+                            <article class="package-include bg-light-grey">
+                            <h3>Service</h3>
+                            <ul>
+                                <li><i class="fas fa-dot-circle"></i>{{resto.service}}</li>
+                                <li><i class="fas fa-dot-circle"></i>Guide Service Fee</li>
+                            </ul>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+                {# detail end #}
+                {# side-right start #}
+                <div class="col-lg-4">
+                    <div class="sidebar">
+                        {# Booking card start #}
+                        <div class="booking-form-wrap">
+                            <div class="booking-form-inner primary-bg text-center">
+                            <h3>BOOKING</h3>
+                            <p>Anda dapat langsung ke lokasi atau melakukan reservasi dahulu</p>
+                            <a href="/contactUs" class="outline-btn outline-btn-white">Hubungi Kami</a>
+                            </div>
+                        </div>
+                        {# Booking card End #}
+                        {# Menu card start #}
+                        <div class="related-package">
+                            <h3>MENU IMAGES</h3>
+                            <p>Aneka Ragam Menu Restoran <b>{{resto.name}}</b> dengan menu yang bertipe <b>{{resto.cook}}</b></p>
+                            <div class="related-package-slide">
+                            <div class="related-package-item">
+                                <img src="/clients/images/img1.jpg" alt="">
+                            </div>
+                            <div class="related-package-item">
+                                <img src="/clients/images/img2.jpg" alt="">
+                            </div>
+                            <div class="related-package-item">
+                                <img src="/clients/images/img3.jpg" alt="">
+                            </div>
+                            </div>
+                        </div>
+                        {# Menu card start #}
+                        <div class="package-map">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.540423056448!2d-0.12174238402827448!3d51.50330061882345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487604b900d26973%3A0x4291f3172409ea92!2slastminute.com%20London%20Eye!5e0!3m2!1sen!2snp!4v1646314586610!5m2!1sen!2snp" width="600" height="320" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                        <div class="package-list">
+                            <div class="overlay"></div>
+                            <h4>MORE PACKAGES</h4>
+                            <ul>
+                            <li>
+                                <a href="#"><i aria-hidden="true" class="icon icon-arrow-right-circle"></i>Vacation Packages</a>
+                            </li>
+                            <li>
+                                <a href="#"><i aria-hidden="true" class="icon icon-arrow-right-circle"></i>Homeymoon Packages</a>
+                            </li>
+                            <li>
+                                <a href="#"><i aria-hidden="true" class="icon icon-arrow-right-circle"></i>New Year Packages</a>
+                            </li>
+                            <li>
+                                <a href="#"><i aria-hidden="true" class="icon icon-arrow-right-circle"></i>Weekend Packages</a>
+                            </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {# side-right end #}
+                </div>
+            </div>
+        </div>
+        <!-- ***main end*** -->
+    </section>
+    </main>
+
+    <!-- ***Footer start*** -->
+    {% include "components/clients/index/footer.njk" %}
+    <!-- ***Footer end*** -->
+
+    {% include "components/clients/index/backToTop.njk" %}
+
+    <!-- ***custom search field html*** -->
+    <div class="header-search-form">
+        <div class="container">
+            <div class="header-search-container">
+                <form class="search-form" role="search" method="get">
+                    <input type="text" name="s" placeholder="Enter your text...">
+                </form>
+                <a href="#" class="search-close">
+                    <i class="fas fa-times"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- ***custom search field html*** -->
+        
+{% endblock content %}

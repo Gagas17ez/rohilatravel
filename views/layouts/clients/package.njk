@@ -1,0 +1,29 @@
+{% import "components/clients/index/card.njk" as card %} {# package(title, description, time, pax, place, totalReview,
+rate, price, img='/clients/images/img4.jpg') #}
+
+<section class="home-destination">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-sm-center">
+        <div class="section-heading">
+          <h2 class="section-title">Pesan Paket Wisata Dari Kami</h2>
+          <p>Dari layanan kami yang paling populer, anda dapat menikmati paket perjalanan yang paling menarik di dunia
+            berbagai destinasi </p>
+        </div>
+      </div>
+    </div>
+    <div class="package-section">
+      {% if package == null %}
+      <p class="text-center"><b>Data Package tidak ada</b></p>
+      {% else %}
+      {% for item in package %}
+      {{ card.card1(item.title, item.desc, item.benefit, item.duration+" - Days", item.pax, item.status, item.price,
+      "/uploads/"+ item.images, "/package/"+item.id) }}
+      {% endfor %}
+      {% endif %}
+      <div class="section-btn-wrap text-center">
+        <a href="/package" class="round-btn">Lihat Semua Paket Wisata</a>
+      </div>
+    </div>
+  </div>
+</section>

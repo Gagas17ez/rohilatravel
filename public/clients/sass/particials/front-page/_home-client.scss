@@ -1,0 +1,71 @@
+.client-section {
+	padding: 115px 0;
+	position: relative;
+	z-index: 1;
+	@include bp(xl) {
+		.row {
+			margin-left: -25px;
+			margin-right: -25px;
+			[class*="col-"] {
+				padding-left: 25px; 
+				padding-right: 25px; 
+			}
+		}
+	}
+	@include bp(smx) {
+		padding: 70px 0;
+	}
+}
+.client-section {
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-attachment: fixed;
+	.client-logo {
+		ul {
+			margin: 0;
+			padding: 0;
+			font-size: 0;
+			li {
+				display: inline-block;
+				list-style: none;
+				padding: 15px;
+				width: 33.33%;
+				text-align: center;
+				border-right: 1px solid rgba(255, 255, 255, 0.4);
+				border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+				&:nth-child(3n+3) {
+					border-right: none;
+				}
+				&:last-child,
+				&:nth-last-child(2),
+				&:nth-last-child(3) {
+					border-bottom: none;
+				}
+			}
+		}
+	}
+	@include bp(lgx) {
+		.client-content {
+			text-align: center;
+			margin-bottom: 40px;
+		}
+	}
+	@include bp(smx) {
+		.client-logo {
+			ul {
+				li {
+					padding: 5px;
+				}
+			}
+		}
+	}
+}
+.client-content {
+	* {
+		color: $light-color;
+	}
+	p {
+		margin-bottom: 30px;
+	}
+}

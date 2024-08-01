@@ -1,0 +1,193 @@
+{% extends "layouts/admin/adminLayout.njk" %}
+{% import "components/admin/input.njk" as form %}
+
+{% block content %}
+    <div class="container-fluid px-4">
+        <a href="/admin/package" class="btn btn-primary mt-4">
+            <i class="fa-solid fa-chevron-left"></i>
+            <span>Back</span>
+        </a>
+        <h3 class="my-2">Create Package</h3>
+        <form x-data="createPaket(event)" @submit.prevent="submit">
+            <div class="col-md-8">
+              {{ form.input("text", "title", "Title", "paket.title") }}
+
+              <div class="form-floating my-3">
+                <select class="form-select" id="destination" aria-label="Destination" data-placeholder="Select Destination" multiple>
+                    {% for item in dest %}
+                        <option value="{{item.id}}">{{item.name}}</option>
+                    {% endfor %}
+                </select>
+                <label for="destination">Destination</label>
+              </div>
+
+              <div class="form-floating my-3">
+                <select class="form-select" id="acomodation" aria-label="Acomodation" data-placeholder="Select Acomodation" multiple>
+                    {% for item in hotel %}
+                        <option value="{{item.id}}">{{item.name}}</option>
+                    {% endfor %}
+                </select>
+                <label for="acomodation">Acomodation</label>
+              </div>
+
+              <div class="form-floating my-3">
+                <select class="form-select" id="transportation" aria-label="Transportation" data-placeholder="Select Transportation" multiple>
+                    {% for item in transport %}
+                        <option value="{{item.id}}">{{item.name}}</option>
+                    {% endfor %}
+                </select>
+                <label for="transportation">Transportation</label>
+              </div>
+
+              <div class="form-floating my-3">
+                <select class="form-select" id="restaurant" aria-label="Restaurant" data-placeholder="Select Restaurant" multiple>
+                    {% for item in resto %}
+                        <option value="{{item.id}}">{{item.name}}</option>
+                    {% endfor %}
+                </select>
+                <label for="restaurant">Restaurant</label>
+              </div>
+      
+              <div class="row mb-4">
+                <div class="col-12">
+                  <label for="formFile" class="form-label">Image</label>
+                  <input class="form-control" type="file" id="images" x-model="paket.images">
+                </div>
+              </div>
+
+              {{ form.input("number", "duration", "Duration (Day)", "paket.duration") }}
+              {{ form.input("number", "pax", "Pax (People)", "paket.pax") }}
+              {{ form.input("number", "price", "Price", "paket.price") }}
+              {{ form.textarea("desc", "Description", "paket.desc") }}
+              {{ form.textarea("benefit", "Benefit", "paket.benefit") }}
+              {{ form.textarea("itinerary", "Itinerary", "paket.itinerary") }}
+              {{ form.textarea("policy", "Policy", "paket.policy") }}
+              {{ form.dropdown("status", "Status", ['Ready', 'Closed'], "paket.status" ) }}
+
+              <button type="submit" class="btn btn-primary my-3">Submit</button>
+            </div>
+          </form>
+    </div>
+    <script>
+        $(document).ready(function(){
+          $('#destination').select2( {
+              theme: "bootstrap-5",
+              width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+              placeholder: $( this ).data( 'placeholder' ),
+          });
+          $('#acomodation').select2( {
+              theme: "bootstrap-5",
+              width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+              placeholder: $( this ).data( 'placeholder' ),
+          });
+          $('#transportation').select2( {
+              theme: "bootstrap-5",
+              width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+              placeholder: $( this ).data( 'placeholder' ),
+          });
+          $('#restaurant').select2( {
+              theme: "bootstrap-5",
+              width: $( this ).data( 'width' ) ? $( this ).data( 'width' ) : $( this ).hasClass( 'w-100' ) ? '100%' : 'style',
+              placeholder: $( this ).data( 'placeholder' ),
+          });
+        });
+    
+        function createPaket() {
+          return {
+            paket: {
+              title: null,
+              duration: null,
+              pax: null,
+              price: null,
+              desc: null,
+              benefit: null,
+              itinerary: null,
+              policy: null,
+              status: null,
+              destinationId: [],
+              acomodationId: [],
+              transportationId: [],
+              restaurantId: [],
+            },
+            
+            submit() {
+              this.paket.destinationId = $("#destination").val();
+              this.paket.acomodationId = $("#acomodation").val();
+              this.paket.transportationId = $("#transportation").val();
+              this.paket.restaurantId = $("#restaurant").val();
+
+              const fileInput = document.getElementById('images');
+              const file = fileInput.files[0];
+    
+              const formData = new FormData();
+              formData.append('images', file);
+    
+              formData.append('data', JSON.stringify(this.paket));
+
+              fetch('/admin/package/api/add', {
+                method: 'POST',
+                body: formData
+              })
+              .then((response) => {
+                // if (!response.ok) {
+                //     throw new Error('Network response was not ok');
+                // }
+                return response.json();
+              })
+              .then((data) => {
+                console.log({ data });
+                alert(data.status.message);
+                if(data.status.code == 201){
+                  window.location.href = "/admin/package/";
+                }
+              })
+              .catch((error) => {
+                console.error("Error:", error);
+              });
+            }
+          };
+        }
+    
+        // function listDestination() {
+        //     return {
+        //         data: [],
+        //         fetchDestination() {
+        //         fetch("/admin/destination/api/list", {
+        //             method: "GET",
+        //             headers: {
+        //             'Content-Type': 'application/json'
+        //             }
+        //         })
+        //         .then((response) => response.json())
+        //         .then((data) => {
+        //             this.data = data.data; // Menggunakan `this.data` untuk menyimpan data tipe
+        //         })
+        //         .catch((error) => {
+        //             console.error('Error fetching destination Type:', error);
+        //         });
+        //         }
+        //     };
+        // }
+
+        // function listDestination() {
+        //     return {
+        //         data: [],
+        //         fetchDestination() {
+        //         fetch("/admin/destination/api/list", {
+        //             method: "GET",
+        //             headers: {
+        //             'Content-Type': 'application/json'
+        //             }
+        //         })
+        //         .then((response) => response.json())
+        //         .then((data) => {
+        //             this.data = data.data; // Menggunakan `this.data` untuk menyimpan data tipe
+        //         })
+        //         .catch((error) => {
+        //             console.error('Error fetching destination Type:', error);
+        //         });
+        //         }
+        //     };
+        // }
+      </script>
+{% endblock %}

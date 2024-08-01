@@ -1,0 +1,55 @@
+{% extends "layouts/admin/auth/authLayout.njk" %}
+{% block content %}
+    <div class="d-flex flex-column justify-content-center" style="width: 100%; height: 100vh;">
+        <div class="card shadow-sm p-2" style="margin: 0 auto; width: 36%;">
+            <div class="card-body">
+                <h2 class="card-title mb-5 text-center">Welcome to Rusli Travel</h2>
+                <h6 class="card-title">Register</h6>
+                <form>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="name" placeholder="name@example.com">
+                        <label for="floatingInput">Name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                        <label for="floatingInput">Email address</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" id="password" placeholder="Password">
+                        <label for="floatingPassword">Password</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" id="confirmPassword" placeholder="Password">
+                        <label for="floatingPassword">Confirm Password</label>
+                    </div>
+                    <button onclick="regis()" type="button" class="btn btn-primary" style="width: 100%;">Daftar</button>
+                    <a href="/login">sudah punya akun? <span>Masuk</span></a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function regis(){
+            const name = $("#name").val();
+            const email = $("#email").val();
+            const password = $("#password").val();
+            const confirmPassword = $("#confirmPassword").val();
+
+            $.ajax({
+                url: "/register",
+                method: "post",
+                contentType: "application/json",
+                data: JSON.stringify({name, email, password, confirmPassword})
+            })
+            .done((response)=>{
+                alert(response.status.message);
+                window.location.href = "/login";
+            })
+            .fail((xhr, textStatus, errorThrown) => {
+                const message = xhr.responseJSON.status.message;
+                alert("Terjadi kesalahan: " + message); // Menampilkan pesan error ke pengguna
+            });
+        }
+    </script>
+{% endblock content %}

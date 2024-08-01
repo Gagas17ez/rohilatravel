@@ -1,0 +1,25 @@
+.home-gallery {
+	margin-bottom: 110px;
+	@include bp(smx) {
+		margin-bottom: 70px;
+	}
+}
+.gallery-container {
+	.grid-item {
+		width: 33.33%;
+		padding: 10px;
+	}
+	.gallery-img {
+		img {
+			width: 100%;
+			@include border-radius(25px);
+
+		}
+	}
+	@include bp(smx) {
+		.grid-item {
+			width: 50%;
+			padding: 5px;
+		}
+	}
+}

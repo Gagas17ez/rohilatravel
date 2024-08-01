@@ -1,0 +1,85 @@
+.comming-soon-section {
+	background-size: cover;
+	background-position: center center;
+	@include flexbox;
+	@include align-items(center); 
+	position: relative;
+	* {
+		color: $light-color;
+	}
+	.overlay {
+		background-color: #151515;
+		opacity: 0.6;
+		z-index: 1;
+	}
+	.comming-soon-wrap {
+		color: $light-color; 
+		position: relative;
+		z-index: 2;
+	}
+	.site-identity {
+		text-align: center;
+		img {
+			max-width: 100%;
+		}
+	}
+	.comming-soon-content {
+		margin-top: 80px;
+		margin-bottom: 50px;
+		text-align: center;
+		h2 {
+			@include font-size(60);
+			font-weight: 800;
+			text-transform: uppercase;
+			line-height: 1.1;
+			margin-bottom: 30px;
+		}
+	}
+	.social-icons {
+		border-bottom: 1px solid rgba(249, 249, 249, 0.18);
+		margin-bottom: 25px;
+		padding-bottom: 25px;
+		text-align: center;
+		ul {
+			margin: 0;
+			padding: 0;
+		}
+		li {
+			list-style: none;
+			display: inline-block;
+			margin: 0 5px;
+		}
+		a {
+			background-color: $primary-color;
+			@include border-radius(25px);
+			@include font-size(14);
+			color: $light-color;
+			display: block;
+			width: 33px;
+			height: 33px;
+			line-height: 33px;
+			&:hover {
+				border-color: $hover-color;
+				color: $hover-color;
+			}
+		}
+	}
+	@include bp(xl) {
+		height: 100vh;
+	}
+	@include bp(xlx) {
+		padding: 30px 0;
+	}
+	@include bp(lgx) {
+		.comming-soon-footer {
+			text-align: center;
+		}
+	}
+	@include bp(smx) {
+		.comming-soon-content {
+			h2 {
+				@include font-size(30);
+			}
+		}
+	}
+}

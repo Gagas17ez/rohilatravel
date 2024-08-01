@@ -1,0 +1,57 @@
+{% import "components/clients/blog/detail.njk" as com %}
+
+<div id="commentArea" class="comment-area">
+   <h3 class="comment-title">3 Comments</h3>
+   <div class="comment-area-inner">
+      <ol>
+         {{ com.comment("John Doe", "January 1, 2020", "Fames tincidunt diamlorem tristique accumsan nulla, sem. Voluptatibus doloremque, luctus.") }}
+         {{ com.comment("John Doe", "January 1, 2020", "Fames tincidunt diamlorem tristique accumsan nulla, sem. Voluptatibus doloremque, luctus.") }}
+      </ol>
+   </div>
+   <div id="replyForm" class="comment-form-wrap">
+      <h3 class="comment-title">Leave a Reply</h3>
+      <p>Your email address will not be published. Required fields are marked *</p>
+      <form class="comment-form">
+         <p class="full-width">
+            <label>Comment</label>
+            <textarea rows="9"></textarea>
+         </p>
+         <p>
+            <label>Name *</label>
+            <input type="text" name="name">
+         </p>
+         <p>
+            <label>Email *</label>
+            <input type="email" name="email">
+         </p>
+         <p>
+            <label>Website</label>
+            <input type="text" name="web">
+         </p>
+         <p>
+            <label>
+               <input type="checkbox" name="s">
+               Save my name, email, and website in this browser for the next time I comment.
+            </label>
+         </p>
+         <p class="full-width">
+            <input type="submit" name="submit" value="Post comment">
+         </p>
+      </form>
+   </div>
+   <!-- post navigation html -->
+   <div class="post-navigation">
+      <div class="nav-prev">
+         <a href="blog-single.html">
+            <span class="nav-label">Previous</span>
+            <span class="nav-title">A Sample of a BlockQuote</span>
+         </a>
+      </div>
+      <div class="nav-next">
+         <a href="blog-single.html">
+            <span class="nav-label">Next</span>
+            <span class="nav-title">Blog Can Be Everything Nowadays.</span>
+         </a>
+      </div>
+   </div>
+</div>

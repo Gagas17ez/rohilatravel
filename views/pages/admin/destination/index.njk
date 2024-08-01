@@ -1,0 +1,103 @@
+{% extends "layouts/admin/adminLayout.njk" %}
+{% import "components/admin/data-table.njk" as datatable %}
+{% block content %}
+    <div class="container-fluid px-4" x-data="init()" x-init="fetchData()">
+        <h3 class="my-3">Destination List</h3>
+        <!-- Button "List Type" -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#listCategory">List Type</button>
+        {% include "components/admin/destination/type-modal.njk" %}
+
+        <a class="btn btn-primary my-2" href="/admin/destination/create"><i class="fas fa-plus-circle"></i>  Create Destination</a>
+        {% if data.length > 0 %}
+            {{ datatable.destination(data) }}
+        {% else %}
+            <p><b>Data Destination tidak ada</b></p>
+        {% endif %}
+        
+    </div>
+    <script>
+      
+    async function deleteDestination(id) {
+        if (confirm("Are you sure you want to delete this Destination?")) {
+            try {
+                const response = await fetch("/admin/destination/api/delete/" + id, {
+                    method: "DELETE",
+                });
+
+                if (response.ok) {
+                    // Optionally handle success, like updating UI
+                    alert("Destination deleted successfully");
+                    location.reload();
+                } else {
+                    // Handle server error
+                    console.error("Failed to delete Destination:", response.statusText);
+                }
+            } catch (error) {
+                // Handle network error
+                console.error("Failed to delete Destination:", error.message);
+            }
+        } else {
+            return false;
+        }
+    }
+
+    function typeData() {
+        return {
+            dataType: {
+                name: null,
+                qtyDestination: null
+            },
+            createType: async function () {
+                const request = await fetch("/admin/trip_type/api/create", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(this.dataType)
+                });
+                const response = await request.json();
+                if (response.status.code === 201) {
+                    alert("User created successfully");
+                }
+            },
+            data: null,
+            fetchData: async function () {
+                try {
+                    const request = await fetch("/admin/trip_type/api/list", {
+                        method: "GET",
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                    const response = await request.json();
+                    this.data = response.data
+                } catch (error) {
+                    console.error('Error fetching destination data:', error);
+                }
+            },
+            deleteType: async function (id) {
+                if (confirm("Are you sure you want to delete this type?")) {
+                    try {
+                        const response = await fetch("/admin/trip_type/api/delete/" + id, {
+                            method: "DELETE",
+                        });
+
+                        if (response.ok) {
+                            // Optionally handle success, like updating UI
+                            alert("Type deleted successfully");
+                        } else {
+                            // Handle server error
+                            console.error("Failed to delete type:", response.statusText);
+                        }
+                    } catch (error) {
+                        // Handle network error
+                        console.error("Failed to delete type:", error.message);
+                    }
+                } else {
+                    return false;
+                }
+            }
+        };
+    }
+    </script>
+{% endblock %}

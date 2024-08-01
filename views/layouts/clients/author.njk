@@ -1,0 +1,23 @@
+{% import "components/clients/blog/detail.njk" as post %}
+{% import "components/clients/profile.njk" as user %}
+
+<div class="col-lg-4 secondary">
+  <div class="sidebar">
+    <aside class="widget widget_latest_post widget-post-thumb">
+      <h3 class="widget-title">Recent Post</h3>
+      <ul>
+        {% for blog in latestBlog %}
+        {{ post.recent(blog.title, blog.date, "No Comments", "/blog/"+blog.slug, blog.thumbnail) }}
+        {% endfor %}
+      </ul>
+    </aside>
+    <aside class="widget widget_category">
+      <h3 class="widget-title">Categories</h3>
+      <ul>
+        {% for data in categories %}
+        {{ post.category(data.name, data.dataValues.count, "/blog?category="+data.name.toLowerCase()) }}
+        {% endfor %}
+      </ul>
+    </aside>
+  </div>
+</div>

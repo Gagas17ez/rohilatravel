@@ -1,0 +1,99 @@
+{% extends "layouts/clients/masterLayout.njk" %}
+{% import "components/clients/index/banner.njk" as hero %}
+{% import "components/clients/index/card.njk" as card %}
+
+{% block content %}
+
+    <main id="content" class="site-main">
+    <section class="inner-page-wrap">
+        <!-- ***Banner start*** -->
+        <div class="inner-banner-wrap">
+            <div class="inner-baner-container" style="background-image: url(/clients/images/restaurant/1.jpg);">
+                <div class="container">
+                <div class="inner-banner-content">
+                    <h1 class="page-title">Restaurant</h1>
+                </div>
+                </div>
+            </div>
+        </div>
+        <!-- ***Banner end*** -->
+        <!-- ***content start** -->
+        <div class="package-item-wrap">
+            <div class="container">
+                <div class="row gx-5">
+                {% if resto.length > 0 %}
+                    {% for item in resto %}
+                        {{ card.card3(75, item.cook, item.name, item.desc, "/restaurant/"+item.id, item.images) }}
+                    {% endfor %}
+                {% else %}
+                    <p><b>Data Restaurant tidak ada</b></p>
+                {% endif %}
+                
+            </div>
+        </div>
+        <!-- ***content end*** -->
+        <!-- ***bottom start*** -->
+        <div class="client-section" style="background-image: url(/clients/images/restaurant/3.jpg);">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <article class="client-content">
+                        <h5 class="sub-title">DISCOUNT OFFER</h5>
+                        <h2 class="section-title">GET SPECIAL DISCOUNT ON SIGN UP !</h2>
+                        <p>Fusce hic augue velit wisi quibusdam pariatur, iusto primis, nec nemo, rutrum. Vestibulum cumque laudantm sit.</p>
+                        <a href="/contactUs" class="round-btn">Hubungi Kami</a>
+                    </article>
+                </div>
+                <div class="col-lg-6">
+                    <div class="client-logo">
+                        <ul>
+                            <li>
+                            <img src="/clients/images/client-img1.png" alt="">
+                            </li>
+                            <li>
+                            <img src="/clients/images/client-img2.png" alt="">
+                            </li>
+                            <li>
+                            <img src="/clients/images/client-img3.png" alt="">
+                            </li>
+                            <li>
+                            <img src="/clients/images/client-img4.png" alt="">
+                            </li>
+                            <li>
+                            <img src="/clients/images/client-img5.png" alt="">
+                            </li>
+                            <li>
+                            <img src="/clients/images/client-img6.png" alt="">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <!-- ***bottom end*** -->
+    </section>
+    </main>
+    <!-- ***Footer start*** -->
+    {% include "components/clients/index/footer.njk" %}
+    <!-- ***Footer end*** -->
+
+    {% include "components/clients/index/backToTop.njk" %}
+
+    <!-- ***custom search field html*** -->
+    <div class="header-search-form">
+        <div class="container">
+            <div class="header-search-container">
+                <form class="search-form" role="search" method="get">
+                    <input type="text" name="s" placeholder="Enter your text...">
+                </form>
+                <a href="#" class="search-close">
+                    <i class="fas fa-times"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- ***custom search field html*** --> 
+    
+{% endblock content %}

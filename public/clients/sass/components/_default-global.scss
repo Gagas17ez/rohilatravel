@@ -1,0 +1,635 @@
+@include bp(lg) {
+	.right-sidebar {
+		padding-right: 40px;
+	}
+	.left-sidebar {
+		padding-left: 40px;
+	}
+}
+.semi-bold {
+	font-weight: 600;
+}
+.bold {
+	font-weight: 700;
+}
+.text-left {
+	text-align: left;
+}
+.text-right {
+	text-align: right;
+}
+.white-bg {
+	background-color: $light-color;
+}
+.bg-light-grey {
+	background-color: #F8F8F8;
+}
+.primary-bg {
+	background-color: $primary-color;
+}
+.primary-color {
+	color: $primary-color;
+}
+.overlay {
+	background-color: rgba($dark-color, 0.6);
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+}
+// section title css
+.section-heading {
+	margin-bottom: 45px;
+	.sub-title {
+		color: $secondary-color;
+		font-size: 14px;
+		font-weight: 500;
+		margin-bottom: 10px;
+	}
+	.section-title {
+		margin-bottom: 10px;
+		text-transform: uppercase;
+	}
+	p {
+		font-size: 16px;
+		line-height: 24px;
+	}
+	@include bp(smx) {
+		margin-bottom: 30px;
+		.sub-title {
+			margin-bottom: 8px;
+		}
+		.section-title {
+			margin-bottom: 15px;
+		}
+	}
+}
+// site preloader css
+.site-loader {
+	background-color: $light-color;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 9999;
+	text-align: center;
+	.preloader-content {
+	    position: absolute;
+	    top: 50%;
+	    left: 50%;
+	    @include translate(-50%, -50%);
+	    width: 50px;
+	}
+}
+// social share icon
+.social-icon {
+	ul {
+		margin: 0;
+		padding: 0;
+		font-size: 0;
+	}
+	li {
+		display: inline-block;
+		list-style: none;
+		margin: 0 5px;
+	}
+	a {
+		@include font-size(16);
+		color: lighten($dark-color, 25%);
+		@include transition(color 0.4s);
+		&:hover,
+		&:focus,
+		&:active {
+			color: $hover-color;
+		}
+	}
+}
+
+// back to top css
+.to-top-icon {
+	background-color: rgba($primary-color, 0.7);
+	color: $light-color;
+	font-size: 12px;
+	display: none;
+	line-height: 35px;
+	text-align: center;
+	@include border-radius(6px);
+	width: 35px;
+	height: 35px;
+	position: fixed;
+	right: 15px;
+	bottom: 15px;
+	z-index: 99;
+	@include transition(background-color 0.3s, color 0.3s);
+	&:hover {
+		background-color: $hover-color;
+		color: $light-color;
+	}
+	@include bp(smx) {
+		width: 25px;
+		height: 25px;
+		line-height: 25px;
+		font-size: 13px;
+		right: 10px;
+		bottom: 10px;
+	}
+}
+// star rating css
+.rating-start {
+	display: table;
+	position: relative;
+	@include font-size(12);
+	letter-spacing: 1.5px;
+	&:before {
+		color: #ccd6df;
+		content: "\f005 \f005 \f005 \f005 \f005";
+		display: block;
+		font-family: 'Font Awesome 5 free';
+		font-weight: 900;
+	}
+	span {
+		display: block;
+		left: 0;
+		overflow: hidden;
+		position: absolute;
+		top: 0;
+		&:before {
+			color: $primary-color;
+			content: "\f005 \f005 \f005 \f005 \f005";
+			display: inline-block;
+			font-family: 'Font Awesome 5 free';
+			font-weight: 900;
+		}
+	}
+}
+
+// Tab css
+.nav-tabs {
+	border: none;
+	margin: 0;
+	.nav-link {
+		background-color: #EAEAEB; 
+		@include border-radius(35px);
+		border: none;
+		color: $title-color;
+		line-height: 1.1;
+		font-size: 16px;
+		font-weight: 600;
+		padding: 15px 30px;
+		margin: 0 5px;
+		&:hover,
+		&:focus,
+		&.active {
+			background-color: $primary-color;
+			color: $light-color;
+		}
+	}
+}
+.tab-container {
+	.responsive-tabs .nav-tabs {
+	    display: none;
+	}
+	@include bp(md) {
+		.responsive-tabs .nav-tabs {
+	        display: flex;
+	    }
+	    .responsive-tabs .card {
+	        border: none;
+	    }
+	    .responsive-tabs .card .card-header {
+	        display: none;
+	    }
+	    .responsive-tabs .card .collapse {
+	        display: block;
+	    }
+	}
+	@include bp(smx) {
+		.nav {
+			display: block;
+			.nav-tabs {
+				.nav-link {
+					background-color: #eaeaeb;
+					border: none;
+					padding: 15px 20px;
+					&:hover,
+					&:focus,
+					&.active {
+						background-color: $hover-color;
+						color: $light-color;
+					}
+				}
+			}
+		}
+	}
+	@include bp(mdx) {
+		.responsive-tabs .tab-pane {
+	        display: block !important;
+	        opacity: 1;
+	    }
+	}
+}
+.tab-content {
+	box-shadow: 0px 0px 15px 0px rgba($dark-color, 0.05);
+	@include border-radius(25px);
+	margin-top: 30px;
+	padding: 30px;
+	border: none;
+	ul {
+		margin-bottom: 0;
+		li {
+			margin-bottom: 5px;
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+	@include bp(mdx) {
+		background-color: transparent;
+		box-shadow: none;
+		.card {
+			background-color: transparent;
+			box-shadow: none;
+			@include border-radius(0px);
+			margin-bottom: 20px;
+			border: none;
+			&:last-child {
+				margin-bottom: 0;
+			}
+			.card-header {
+				background-color: transparent;
+				border: none;
+				padding: 0;
+				margin: 0;
+				a {
+					background-color: $primary-color;
+					@include border-radius(25px);
+					color: $light-color;
+					font-family: $primary-font;
+					font-size: 15px;
+					display: block;
+					width: 100%;
+					text-decoration: none;
+					padding: 18px 24px;
+					font-weight: 600;
+					position: relative;
+					text-align: left;
+					&:before {
+						content: "\f106";
+						display: block;
+						font-weight: 900;
+						font-family: "Font Awesome 5 Free";
+						float: right;
+						position: absolute;
+						top: 50%;
+						@include translate(0, -50%);
+						right: 15px;
+					}
+					&.collapsed {
+						background-color: #eaeaeb;
+						color: $title-color;
+						&:before {
+							content: "\f107";
+						}
+					}
+				}
+			}
+			.card-body {
+				font-size: 15px;
+				padding: 20px;
+			}
+		}
+	}
+	@include bp(smx) {
+		padding: 0;
+		border: none;
+	}
+}
+
+// Accordion css
+.accordion-content {
+	.card {
+		background-color: transparent;
+		@include border-radius(0px);
+		margin-bottom: 20px;
+		border: none;
+		&:last-child {
+			margin-bottom: 0;
+		}
+		.card-header {
+			background-color: transparent;
+			border: none;
+			padding: 0;
+			margin: 0;
+			a {
+				background-color: $primary-color;
+				color: $light-color;
+				@include border-radius(25px);
+				font-family: $primary-font;
+				font-size: 16px;
+				display: block;
+				width: 100%;
+				text-decoration: none;
+				padding: 16px 25px;
+				font-weight: 400;
+				position: relative;
+				text-align: left;
+				&:before {
+					content: "\f106";
+					display: block;
+					font-weight: 900;
+					font-family: "Font Awesome 5 Free";
+					float: right;
+					position: absolute;
+					top: 50%;
+					@include translate(0, -50%);
+					right: 15px;
+				}
+				&.collapsed {
+					&:before {
+						content: "\f107";
+					}
+				}
+			}
+		}
+		.card-body {
+			font-size: 15px;
+			padding: 20px;
+		}
+	}
+	@include bp(xlx) {
+		.card {
+			.card-header {
+				a {
+					font-size: 14px;
+					padding: 12px 25px;
+				}
+			}
+		}
+	}
+}
+
+// Slick slider css
+.slick-slider {
+	position: relative;
+	.slick-prev {
+		left: 15px;
+		&:before {
+			content: "\f053";
+		}
+	}
+	.slick-next {
+		right: 15px;
+		&:before {
+			content: "\f054";
+		}
+	}
+	.slick-prev, 
+	.slick-next {
+		z-index: 1;
+		width: auto;
+		height: auto;
+		&:before {
+			background-color: rgba(0, 0, 0, 0.8);
+			color: $light-color;
+			@include border-radius(100%);
+			display: block;
+			font-family: 'Font Awesome 5 Free';
+			font-weight: 900;
+			height: 40px;
+			width: 40px;
+			text-align: center;
+			line-height: 40px;
+			@include transition(background-color 0.4s);
+		}
+		&:hover,
+		&:focus,
+		&:active {
+			&:before {
+				background-color: $hover-color;
+				color: $light-color;
+			}
+		}
+	}
+}
+.slick-dots {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	li {
+		width: auto;
+		height: auto;
+		margin: 0 6px;
+		button {
+			background-color:#c6c6c6;
+			@include border-radius(100%);
+			width: 10px;
+			height: 10px;
+			&:before {
+				display: none;
+			}
+			&:hover {
+				background-color: $primary-color;
+			}
+		}
+		&.slick-active {
+			button {
+				background-color: $primary-color;
+			}
+		}
+	}
+}
+
+// datepicker css
+.ui-datepicker {
+	background-color: $light-color;
+	@include border-radius(0px);
+	width: 280px;
+	&.ui-widget {
+		font-family: inherit;
+	}
+	.ui-datepicker-header {
+		background-color: transparent;
+		border: none;
+		border-bottom: 1px solid #e6e6e6;
+		padding: 10px 0 15px;
+		position: relative;
+	}
+	.ui-datepicker-title {
+		@include font-size(15);
+		line-height: 1.2;
+	}
+	.ui-datepicker-prev,
+	.ui-datepicker-next {
+		border: 1px solid transparent;
+		@include border-radius(100%);
+		line-height: 30px;
+		height: 30px;
+		width: 30px;
+		text-align: center;
+		top: 50%;
+		@include translate(0, -50%);
+		@include transition(all 0.3s linear);
+		span {
+			background-image: none;
+			@include font-size(0);
+			margin: 0;
+			height: auto;
+			position: static;
+			text-indent: inherit;
+			width: auto;
+			&:before {
+				@include font-size(13);
+				font-family: 'Font Awesome 5 Free';
+				font-weight: 900;
+			}
+		}
+		&.ui-state-hover {
+			background-color: $hover-color;
+			color: $light-color;
+		}
+	}
+	.ui-datepicker-prev {
+		span {
+			&:before {
+				content: "\f053";
+			}
+		}
+	}
+	.ui-datepicker-next {
+		span {
+			&:before {
+				content: "\f054";
+			}
+		}
+	}
+	table {
+		thead {
+			tr {
+				background-color: $light-color;
+				border-bottom: 1px solid #e6e6e6;
+				th {
+					color: $title-color;
+					font-weight: normal;
+					@include font-size(12);
+
+				}
+			}
+		}
+	}
+	.ui-datepicker-calendar {
+		tr {
+			td {
+				padding: 4px;
+				a {
+					background-color: transparent;
+					border: 1px solid transparent;
+					@include border-radius(100%);
+					@include font-size(12);
+					display: block;
+					line-height: 30px;
+					height: 30px;
+					padding: 0;
+					width: 30px;
+					text-align: center;
+					@include transition(background-color 0.4s, color 0.4s);
+					&:hover,
+					&:focus,
+					&:active {
+						background-color: $hover-color;
+						color: $light-color;
+					}
+					&.ui-state-highlight {
+						background-color: $primary-color;
+						color: $light-color;
+					}
+					&.ui-state-active {
+						background-color: $hover-color;
+						color: $light-color;
+					}
+				}
+			}
+		}
+	}
+}
+
+// video play button css
+.video-button {
+	a {
+		background-color: rgba($primary-color, 0.8);
+		display: inline-block;
+		position: relative;
+		cursor: pointer;
+		@include border-radius(100%);
+		@include font-size(18);
+		line-height: 100px;
+		width: 100px;
+		height: 100px;
+		text-align: center;
+		position: relative;
+		i {
+			color: $light-color;
+		}
+		&:before,
+		&:after {
+			content: "";
+			position: absolute;
+		    left: 50%;
+		    top: 50%;
+		    width: 100%;
+		    height: 100%;
+		    top: 0;
+		    left: 0;
+		    -webkit-border-radius: 50%;
+		    -moz-border-radius: 50%;
+		    -ms-border-radius: 50%;
+		    -o-border-radius: 50%;
+		    border-radius: 50%;
+		    -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.50);
+		    -moz-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.50);
+		    -ms-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.50);
+		    -o-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.50);
+		    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.50);
+		    -webkit-animation: rippleOne 3s infinite;
+		    -moz-animation: rippleOne 3s infinite;
+		    -ms-animation: rippleOne 3s infinite;
+		    -o-animation: rippleOne 3s infinite;
+		    animation: rippleOne 3s infinite;
+		}
+		&:before {
+			animation-delay: 0.9s;
+		}
+		&:after {
+			animation-delay: 0.3s;
+		}
+	}
+	@include bp(smx) {
+		a {
+			line-height: 60px;
+			width: 60px;
+			height: 60px;
+		}
+	}
+}
+
+@-webkit-keyframes rippleOne {
+    70% {
+        box-shadow: 0 0 0 15px rgba(244, 68, 56, .0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(244, 68, 56, .0);
+    }
+}
+
+@keyframes rippleOne {
+    70% {
+        box-shadow: 0 0 0 15px rgba(244, 68, 56, .0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(244, 68, 56, .0);
+    }
+}

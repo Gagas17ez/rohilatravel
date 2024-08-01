@@ -1,0 +1,50 @@
+.inner-banner-wrap {
+	padding-bottom: 95px;
+	@include bp(smx) {
+		padding-bottom: 55px;
+	}
+}
+.inner-baner-container {
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	text-align: center;
+	position: relative;
+	&:before {
+		background-color: #151515;
+		content: "";
+		display: block;
+		opacity: 0.65;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		position: absolute;
+	}
+	.inner-banner-content {
+		padding-top: 120px;
+		padding-bottom: 135px;
+		position: relative;
+		color: $light-color;
+	}
+	.page-title {
+		color: $light-color;
+		line-height: 1.1;
+		text-transform: uppercase;
+		margin-bottom: 0;
+	}
+	@include bp(smx) {
+		.inner-banner-content {
+			padding-top: 80px;
+			padding-bottom: 80px;
+		}
+		.page-title {
+			@include font-size(30);
+		}
+	}
+}
+.policy-page-section {
+	padding-bottom: 100px;
+}

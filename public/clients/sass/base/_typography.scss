@@ -1,0 +1,203 @@
+body {
+	@include font-size(15);
+	color: #626672;
+    background-color: $light-color;
+    font-family: $primary-font;
+    font-weight: normal;
+    font-style: normal;
+	line-height: $body-line-height;
+    -webkit-font-smoothing: antialiased;
+    word-wrap: break-word;
+    @include bp(smx) {
+    	font-size: 14px;
+    }
+}
+p {
+	line-height: 1.6;
+	margin: 0 0 15px;
+    word-wrap: break-word;
+}
+dfn, cite, em, i {
+	font-style: italic;
+}
+blockquote, pre {
+	background-color: darken($light-color, 2%);
+	border-width: 0 0 0 3px;
+	border-color: darken($light-color, 15%);
+	border-style: solid;
+	@include box-shadow(none);
+	color: lighten($dark-color, 10%);
+	font-family: $primary-font;
+	font-style: italic;
+	margin: 0 0 15px 0;
+	padding: 25px 22px;
+	@include font-size(18);
+	p {
+		margin-bottom: 0;
+	}
+}
+blockquote {
+	background-color: #F8F8F8;
+	@include border-radius(25px);
+	border-left: none;
+	color: $title-color;
+	margin: 40px 0;
+	text-align: center;
+	position: relative;
+	padding: 30px;
+	z-index: 1;
+	&:before {
+		color: darken($light-color, 10%);
+		content: "\f10d";
+		font-family: 'Font Awesome 5 Free';
+		font-weight: 900;
+		@include font-size(30);
+		line-height: 1;
+		font-style: normal;
+		position: absolute;
+		left: 30px;
+		top: 30px;
+    	z-index: -1;
+	}
+	p {
+    	font-size: 22px;
+    	line-height: 1.4;
+	}
+}
+abbr, acronym {
+	border-bottom: 1px dotted lighten($dark-color, 30%);
+	cursor: help;
+}
+mark, ins {
+	text-decoration: none;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+big {
+	font-size: 125%;
+}
+b, strong {
+	font-weight: 700;
+}
+iframe {
+	display: block;
+	width: 100%;
+}
+img {
+	height: auto;
+	max-width: 100%;
+	vertical-align: top;
+}
+
+/*--------------------------------------------------------------
+# Heading
+--------------------------------------------------------------*/
+%heading-group {
+	color: $title-color;
+	font-family: $title-font;
+}
+h1, h2, h3, h4, h5, h6 {
+	@extend %heading-group;
+	margin: 0 0 15px;
+	line-height: $title-line-height;
+	a {
+		color: inherit;
+	}
+}
+h1 {
+    @include font-size(60);
+    font-weight: 800;
+}
+h2 {
+    @include font-size(40);
+    font-weight: 800;
+}
+h3 {
+    @include font-size(22);
+    font-weight: 700;
+}
+h4 {
+    @include font-size(18);
+    font-weight: 600;
+}
+h5 {
+    @include font-size(16);
+}
+h6 {
+    @include font-size(12);
+}
+@include bp(mdx){
+	h1 {
+		@include font-size(36);
+	}
+	h2 {
+		@include font-size(28);
+	}
+	h3 {
+		@include font-size(20);
+	}
+	h4 {
+		@include font-size(16);
+	}
+	h5 {
+		@include font-size(14);
+	}
+	h6 {
+		@include font-size(12);
+	}
+}
+
+/*--------------------------------------------------------------
+# Lists
+--------------------------------------------------------------*/
+ul, 
+ol {
+	margin: 0 0 1.5em 0.875em;
+}
+ul {
+	list-style: disc;
+}
+ol {
+	list-style: decimal;
+}
+li > ul,
+li > ol {
+	margin-bottom: 0;
+	margin-left: 1.5em;
+}
+dt {
+	font-weight: bold; 
+}
+dd {
+	margin: 0 1.5em 1.5em; 
+}
+
+/*--------------------------------------------------------------
+# Links
+--------------------------------------------------------------*/
+a {
+	color: #0085BA;
+	text-decoration: none;
+	@include transition (color 0.3s);
+	&:hover,
+	&:focus,
+	&:active {
+		color: $hover-color;
+		text-decoration: none;
+		outline: 0;
+	}
+	&:visited {
+		text-decoration: none;
+		outline: 0;
+	}
+}
+
+/*--------------------------------------------------------------
+# Others
+--------------------------------------------------------------*/
+
+.container {
+	max-width: 1170px;
+	padding-left: 15px;
+	padding-right: 15px;
+}

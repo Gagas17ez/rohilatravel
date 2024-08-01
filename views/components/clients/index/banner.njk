@@ -1,0 +1,21 @@
+{% import "./button.njk" as button %}
+
+{% macro banner(title, description, img="/clients/images/banner-img1.jpg")%}
+    <div class="home-banner d-flex flex-wrap align-items-center" style="background-image: url({{img}}) ">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="banner-content text-center">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <h2 class="banner-title">{{title}}</h2>
+                    <p>{{description}}</p>
+                <div class="banner-btn">
+                    {{ button.button1("#", "LEARN MORE") }}
+                    {{ button.button2("#", "BOOK NOW") }}
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+{% endmacro %}

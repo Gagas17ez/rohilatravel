@@ -1,0 +1,25 @@
+.destination-item-wrap {
+	padding-bottom: 60px;
+	@include bp(xl) {
+		.row {
+			margin-left: -25px;
+			margin-right: -25px;
+			[class*="col-"] {
+				padding-left: 25px; 
+				padding-right: 25px; 
+			}
+		}
+	}
+}
+.destination-inner-page {
+	.counter-wrap {
+		box-shadow: 0px 0px 25px 0px rgb($dark-color, 0.05);
+		margin-bottom: -80px;
+	}
+	.bg-color-callback {
+		padding-top: 160px;
+		.outline-btn {
+			margin-top: 20px;
+		}
+	}
+}

@@ -1,0 +1,59 @@
+{% macro input(type, id, title, model) %}
+  <div class="form-floating my-3">
+    <input class="form-control" name="{{ id }}" id="{{ id }}" type="{{ type }}" placeholder="Masukkan {{ id }}" x-model="{{ model }}"/>
+    <label for="{{ id }}">{{ title }}</label>
+  </div>
+{% endmacro %}
+
+{% macro textarea(id, title, model) %}
+  <div class="form-floating">
+    <div class="my-3">
+      <label for="{{ id }}" class="mb-1">{{ title }}</label>
+      <textarea class="form-control" name="{{ id }}" id="{{ id }}" rows="3" placeholder="Masukkan {{ id }}" x-model="{{ model }}"></textarea>
+    </div>
+  </div>
+{% endmacro %}
+
+{% macro dropdown(id, title, datas, model) %}
+  <div class="form-floating my-3">
+    <select class="form-select" id="{{ id }}" name="{{ id }}" aria-label="{{ title }}" x-model="{{ model }}">
+      <option selected>-- {{ title }} --</option>
+      {% for content in datas %}
+        <option value="{{ content }}">{{ content }}</option>
+      {% endfor %}
+    </select>
+    <label for="{{ id }}">{{ title }}</label>
+  </div>
+{% endmacro %}
+
+
+{# edit #}
+
+{% macro editInput(type, id, title, val) %}
+  <div class="form-floating my-3">
+    <input class="form-control" name="{{ id }}" id="{{ id }}" type="{{ type }}" value="{{ val }}"/>
+    <label for="{{ id }}">{{ title }}</label>
+  </div>
+{% endmacro %}
+
+{% macro editTextarea(id, title, val) %}
+<div class="form-floating">
+  <div class="my-3">
+    <label for="{{ id }}" class="mb-1">{{ title }}</label>
+    <textarea class="form-control" name="{{ id }}" id="{{ id }}" rows="3">{{ val }}</textarea>
+  </div>
+</div>
+{% endmacro %}
+
+{% macro editDropdown(id, title, datas, val) %}
+  <div class="form-floating my-3">
+    <select class="form-select" id="{{ id }}" name="{{ id }}" aria-label="{{ title }}">
+      <option selected>-- {{ title }} --</option>
+      {% for content in datas %}
+        <option value="{{ content }}" {% if (content == val) %} selected {% endif %}
+          >{{ content }}</option>
+      {% endfor %}
+    </select>
+    <label for="{{ id }}">{{ title }}</label>
+  </div>
+{% endmacro %}

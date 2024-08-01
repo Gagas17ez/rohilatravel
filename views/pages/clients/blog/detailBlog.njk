@@ -1,0 +1,99 @@
+{% extends "layouts/clients/masterLayout.njk" %} 
+{% import "components/clients/index/banner.njk" as hero %} 
+{% import "components/clients/index/card.njk" as card %} 
+{% block content %}
+    <!-- ***site header html end*** -->
+   <main id="content" class="site-main">
+        <!-- ***Inner Banner html start form here*** -->
+      <div class="inner-banner-wrap">
+         <div class="inner-baner-container" style="background-image: url(/clients/images/blog/1.jpg);">
+            <div class="container">
+               <div class="inner-banner-content">
+                  <h1 class="page-title">{{ blog.title }}</h1>
+               </div>
+            </div>
+         </div>
+      </div>
+        <!-- ***Inner Banner html end here*** -->
+      <div class="single-post-section">
+         <div class="single-post-inner">
+            <div class="container">
+               <div class="row">
+                  <div class="col-lg-8 primary right-sidebar">
+                     <!-- single blog post html start -->
+                     <figure class="feature-image">
+                        <img src="{{ blog.thumbnail }}" alt="1500x1000px" style="width: 100%; height: 100%; object-fit: cover;">
+                     </figure>
+                     <div class="entry-meta">
+                        <span class="byline">
+                           <a href="#">Admin</a>
+                        </span>
+                        <span class="posted-on">
+                           <a href="#">{{ blog.date }}</a>
+                        </span>
+                        <span>
+                           <i class="fas fa-list-alt"></i>
+                           <a href="/blog?category={{ blog.Category.name.toLowerCase() }}">{{ blog.Category.name }}</a>
+                        </span>
+                        {# <span class="comments-link">
+                           <a href="#">No Comments</a>
+                        </span> #}
+                     </div>
+                     <article class="single-content-wrap mb-5">
+                        {{ blog.content | safe }}
+                     </article>
+
+                     {# <div class="meta-wrap">
+                        <div class="tag-links">
+                           <a href="#">Destination</a>,
+                           <a href="#">hiking</a>,
+                           <a href="#">Travel Dairies</a>,
+                           <a href="#">Travelling</a>,
+                           <a href="#">Trekking</a>
+                        </div>
+                     </div> #}
+                     
+                     <!-- post comment html -->
+                     {# {% include "layouts/clients/comments.njk" %} #}
+                     <!-- blog post item html end -->
+                  </div>
+                  {% include "layouts/clients/author.njk" %}
+               </div>
+            </div>
+         </div>
+      </div>
+   </main>
+    <!-- ***site footer html start form here*** -->
+
+    <!-- ***Footer start*** -->
+   {% include "components/clients/index/footer.njk" %}
+    <!-- ***Footer end*** -->
+
+   {% include "components/clients/index/backToTop.njk" %}
+
+    <!-- ***custom search field html*** -->
+   <div class="header-search-form">
+   <div class="container">
+      <div class="header-search-container">
+      <form class="search-form" role="search" method="get">
+         <input type="text" name="s" placeholder="Enter your text..." />
+      </form>
+      <a href="#" class="search-close">
+         <i class="fas fa-times"></i>
+      </a>
+      </div>
+   </div>
+   </div>
+    <!-- ***custom search field html*** -->
+
+{% endblock content %}
+
+{# {% block js %}
+<script>
+   function convertDate(datetime){
+      const date = new Date(datetime);
+      const formattedDate = date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+      return formattedDate;
+   }
+</script>
+{% endblock js %} #}

@@ -1,0 +1,86 @@
+.inner-career-detail-wrap {
+	padding-bottom: 100px;
+	@include bp(xl) {
+		.row {
+			margin-left: -25px;
+			margin-right: -25px;
+			[class*="col-"] {
+				padding-left: 25px; 
+				padding-right: 25px; 
+			}
+		}
+	}
+	.job-description {
+		padding: 25px;
+		@include border-radius(25px);
+		margin-top: 60px;
+		overflow: hidden;
+		h4 {
+			background-color: $light-color; 
+			padding: 10px 20px;
+			@include border-radius(25px);
+			text-align: center;
+		}
+		ul {
+			margin: 0;
+			padding: 0;
+			li {
+				list-style: none;
+				border-bottom: 1px solid rgba($light-color, 0.25);
+				margin-bottom: 8px;
+				padding-bottom: 8px;
+				&:last-child {
+					border-bottom: none;
+					margin-bottom: 0;
+					padding-bottom: 0;
+				}
+				i {
+					color: $primary-color;
+					font-size: 12px;
+					margin-right: 5px;
+				}
+			}
+		}
+		&.primary-bg {
+			li {
+				color: $light-color;
+				h5 {
+					display: inline-block;
+					color: $light-color;
+					margin-bottom: 0;
+				}
+			}
+		}
+		&.bg-light-grey {
+			li {
+				border-bottom-color: rgba(167, 167, 167, 0.25);
+			}
+		}
+		&.bg-image {
+			background-image: url(assets/images/banner-img1.jpg);
+			@include background(size, cover);
+			background-repeat: no-repeat;
+			background-position: center center;
+			position: relative;
+			z-index: 1;
+			.round-btn {
+				margin-top: 20px;
+			}
+			* {
+				color: $light-color;
+			}
+		}
+	}
+	@include bp(smx) {
+		padding-bottom: 60px;
+		.job-description {
+			margin-top: 30px;
+		}
+	}
+}
+.career-detail-image {
+	img {
+		width: 100%;
+		@include border-radius(25px);
+	}
+}

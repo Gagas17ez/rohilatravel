@@ -1,0 +1,13 @@
+{% extends "layouts/admin/adminLayout.njk" %}
+{% import "components/admin/user/datatable.component.njk" as datatable %}
+
+{% block content %}
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">User Management</h1>
+        {% if users.length > 0 %}
+            {{ datatable.data(users) }}
+        {% else %}
+            <p>Data users tidak ada</p>
+        {% endif %}
+    </div>
+{% endblock %}

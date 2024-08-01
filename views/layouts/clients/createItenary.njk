@@ -1,0 +1,85 @@
+<div class="home-trip-search primary-bg">
+    <h2 class="text-center text-white mb-5">Rencanakan Liburan Anda dengan AI</h2>
+    <div class="container">
+        <form method="get" class="trip-search-inner d-flex">
+            <div class="group-input">
+                <label> Kota Tujuan* </label>
+                <input type="text" class="form-control" id="lokasi" placeholder="Masukkan Kota Tujuan">
+            </div>
+            <div class="group-input">
+                <label> Jumlah Wisatawan* </label>
+                <input type="number" class="form-control" id="jumlah_orang" placeholder="Masukkan Jumlah Wisatawan">
+            </div>
+            <div class="group-input">
+                <label> Mata Uang* </label>
+                <select class="form-select round-btn bg-white text-black text-capitalize" id="mata_uang"
+                    aria-label="Mata Uang">
+                    <option value="" hidden>Pilih Mata Uang</option>
+                    <option value="IDR">Indonesian Rupiah</option>
+                    <option value="USD">US Dollar</option>
+                    <option value="JPY">Japan Yen</option>
+                    <option value="EUR">Euro</option>
+                </select>
+            </div>
+            <div class="group-input">
+                <label> Budget* </label>
+                <input type="number" class="form-control" id="budget" placeholder="Masukkan Budget">
+            </div>
+            <div class="group-input">
+                <label> Musim* </label>
+                <select class="form-select round-btn bg-white text-black text-capitalize" id="musim" aria-label="Musim">
+                    <option value="" hidden>Pilih Musim</option>
+                    <option value="bulan puasa">Bulan Puasa (Idul Fitri)</option>
+                    <option value="natal">Natal</option>
+                    <option value="tahun baru">Tahun Baru</option>
+                    <option value="libur sekolah">Libur Sekolah</option>
+                    <option value="lebaran">Lebaran</option>
+                    <option value="idul adha">Idul Adha</option>
+                </select>
+            </div>
+            <div class="group-input">
+                <label> Durasi (dalam hari)* </label>
+                <input type="number" class="form-control" id="lama_perjalanan"
+                    placeholder="Masukkan Durasi Perjalanan (dalam hari)">
+            </div>
+            <div class="group-input">
+                <label> Tipe Perjalanan* </label>
+                <select class="form-select round-btn bg-white text-black text-capitalize " id="tipe_perjalanan"
+                    aria-label="Trip Type">
+                    <option value="" hidden>Pilih Tipe Perjalanan</option>
+                    <option value="petualangan">Petualangan</option>
+                    <option value="kuliner">Kuliner</option>
+                    <option value="budaya">Budaya</option>
+                    <option value="keluarga">Keluarga</option>
+                    <option value="alam">Alam</option>
+                    <option value="agama/spiritual">Spiritual</option>
+                </select>
+            </div>
+            <div class="group-input">
+                <label> Transportasi* </label>
+                <select class="form-select round-btn bg-white text-black text-capitalize" id="transportasi"
+                    aria-label="Mode Transportasi">
+                    <option value="" hidden>Pilih Transportasi</option>
+                    <option value="apa saja">Apa Saja</option>
+                    <option value="jalan kaki">Berjalan kaki</option>
+                    <option value="mobil/motor pribadi">Kendaraan Pribadi</option>
+                    <option value="mobil/motor rental">Sewa Kendaraan</option>
+                    <option value="pesawat">Pesawat</option>
+                    <option value="transportasi umum">Transportasi Umum</option>
+                    <option value="sepeda">Sepeda</option>
+                </select>
+            </div>
+            <div class="group-input">
+                <button id="btn-plan" onclick="generateItinerary()" type="button"
+                    class="round-btn outline-btn outline-btn-white" style="width: 100%;">
+                    <img src="/clients/images/loading.gif" alt="loading" width="23px" class="mx-2 d-none">
+                    <span>
+                        Mulai Rencanakan
+                    </span>
+                </button>
+            </div>
+        </form>
+        <div id="result" class="container bg-light round-btn text-black py-4 px-5 mt-5 d-none"></div>
+        <div id="hotels" class="container bg-light round-btn text-black py-4 px-5 mt-5 d-none"></div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+{% import "includes/clients/head.njk" as head %}
+
+<!DOCTYPE html>
+<html lang="en">
+  {{
+    head.title("Trip With Rohila")
+  }}
+
+  {# {% include "includes/clients/head.njk" %} #}
+
+  <body class="home">
+    {% include "components/clients/index/siteLoader.njk" %}
+
+    <div id="page" class="page">{% include "components/clients/index/navbar.njk" %} 
+      {% block content%}{% endblock content%}</div>
+
+    {% include "./profileGlobal.njk" %}
+    {% include "includes/clients/script.njk" %}
+
+    {% block js %}{% endblock %}
+  </body>
+</html>

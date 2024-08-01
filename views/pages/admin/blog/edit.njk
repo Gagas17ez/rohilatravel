@@ -1,0 +1,178 @@
+{% extends "layouts/admin/adminLayout.njk" %}
+
+{% block css %}
+<link href="/admin/css/quill.snow.css" rel="stylesheet" />
+<link href="/admin/css/quill.imageUploader.min.css" rel="stylesheet" />
+
+<style>
+    #imagePreview {
+        height: 250px;
+        border: 1px solid #ccc;
+        object-fit: cover;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid px-4">
+    <h1 class="mt-4 mb-2">Edit Blog</h1>
+    <p>&nbsp;Edit Blog Artikel</p>
+
+    <div class="card card-default card-body">
+        <div class="row p-1">
+            <form action="/admin/blog/edit/{{blog.id}}/update" enctype="multipart/form-data" method="POST">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title : </label>
+                    <input type="text" class="form-control" id="title" name="title" value="{{ blog.title }}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="slug" class="form-label">Slug : </label>
+                    <input type="text" class="form-control" id="slug" name="slug" value="{{ blog.slug }}" required>
+                </div>
+                <div class="mb-3">
+                    <div class="col-md-4">
+                        <label for="image" class="form-label">Thumbnail : </label>
+                        <input type="file" class="form-control" id="image" name="thumbnail" accept="image/*"
+                            onchange="loadFile(event)" required>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="mt-4">Preview Gambar : </p>
+                        <img src="/uploads/{{ blog.thumbnail }}" alt="Image Preview Blog" id="imagePreview">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="content" class="form-label">Konten Artikel : </label>
+                    <div id="editor">
+                        {{ blog.content | safe }}
+                    </div>
+                    <input type="hidden" name="content" id="content" required>
+                </div>
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-12">
+                            <label for="article" class="form-label">Kategori : </label>
+                            <select class="form-select" aria-label="Kategori" name="category" required>
+                                <option value="" selected disabled>-- Pilih Kategori --</option>
+                                {% for category in categories %}
+                                <option value="{{ category.id }}" {% if (blog.categoryId===category.id) %} selected {%
+                                    endif %}>{{ category.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-3 col-sm-12">
+                            <label for="article" class="form-label">Status : </label>
+                            <select class="form-select" aria-label="Status" name="isPublished" required>
+                                <option value="1" {% if (blog.isPublished===true) %} selected {% endif %}>Publish
+                                </option>
+                                <option value="0" {% if (blog.isPublished===false) %} selected {% endif %}>Archive
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Simpan</button>
+                <a href="/admin/blog/" class="btn btn-secondary">Kembali</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="/admin/js/quill.min.js"></script>
+<script src="/admin/js/quill.imageUploader.min.js"></script>
+<script src="/admin/js/quill-resize-image.min.js"></script>
+<script src="/admin/js/quil-img-format.js"></script>
+<script type="text/javascript">
+    Quill.register("modules/imageUploader", ImageUploader);
+
+    console.log("script");
+    document.addEventListener("DOMContentLoaded", function () {
+        const fullToolbarOptions = [
+            [{ header: [1, 2, 3, false] }],
+            [{ align: [] }],
+            ["bold", "italic", "underline"],
+            [{ list: "ordered" }, { list: "bullet" }],
+            ["blockquote", "code-block"],
+            ["link", "image", "video"],
+            ["clean"]
+        ];
+
+        console.log("Dom loaded");
+
+        var quill = new Quill("#editor", {
+            theme: "snow",
+            modules: {
+                toolbar: {
+                    container: fullToolbarOptions
+                },
+                imageResize: {
+                    displaySize: true
+                },
+                imageUploader: {
+                    upload: (file) => {
+                        return new Promise((resolve, reject) => {
+                            const formData = new FormData();
+                            formData.append("contentImg", file);
+
+                            let url = "/admin/blog/store-img";
+
+                            fetch(
+                                url,
+                                {
+                                    method: "POST",
+                                    body: formData
+                                }
+                            )
+                                .then((response) => response.json())
+                                .then((result) => {
+                                    console.log(result);
+                                    resolve(result.url);
+                                })
+                                .catch((error) => {
+                                    reject("Upload failed");
+                                    console.error("Error:", error);
+                                });
+                        });
+                    }
+                }
+            }
+        });
+
+        console.log(quill);
+
+        var form = document.querySelector("form");
+        var content = document.querySelector('#content');
+
+        form.addEventListener('submit', function (e) {
+            content.value = quill.root.innerHTML;
+        });
+    });
+
+    // Slugify Title
+    function slugify(str) {
+        str = str.replace(/[^a-zA-Z0-9\s]/g, '').toLowerCase();
+        str = str.replace(/\s+/g, '-');
+        return str;
+    }
+
+    const formTitle = document.querySelector('#title');
+    const formSlug = document.querySelector('#slug');
+
+    formTitle.addEventListener('input', () => {
+        const slug = slugify(formTitle.value);
+        formSlug.value = slug;
+    });
+
+    // Preview Image
+    const loadFile = (event) => {
+        const reader = new FileReader()
+        reader.onload = () => {
+            let output = document.querySelector("#imagePreview")
+            output.style.display = "block"
+            output.src = reader.result
+        }
+        reader.readAsDataURL(event.target.files[0])
+    }
+</script>
+{% endblock %}

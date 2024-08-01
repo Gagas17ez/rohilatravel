@@ -1,0 +1,386 @@
+{% extends "layouts/clients/masterLayout.njk" %}
+{% import "components/clients/index/banner.njk" as hero %}
+{% import "components/clients/index/card.njk" as card %}
+
+{% block content %}
+<main id="content" class="site-main">
+    <!-- ***hero start*** -->
+    <section class="home-banner-section home-banner-slider">
+        {{ hero.banner("MULAI PETUALANGAN DENGAN KAMI", "Selamat datang di pintu gerbang keindahan Indonesia.
+        Mulailah perjalanan tak terlupakan Anda dengan perusahaan perjalanan terpercaya kami.",
+        "/clients/images/destinations/Gunung-Bromo-Jawa-Timur.jpg") }}
+        {{ hero.banner("JELAJAHI TUJUAN EKSOIK", "Alami keajaiban alam, dan temukan keindahan budaya yang tak
+        tertandingi. Dengan kami, setiap langkah adalah petualangan yang memikat. Siapkan diri Anda untuk memasuki dunia
+        baru yang memukau!", "/clients/images/destinations/flora-san-terra.jpeg") }}
+    </section>
+    <!-- ***hero end*** -->
+
+    <!-- ***pencarian start*** -->
+    {% include "layouts/clients/createItenary.njk" %}
+    <!-- ***pencarian end*** -->
+
+    <!-- ***Tujuan start*** -->
+    {% include "layouts/clients/destinationList.njk" %}
+    <!-- ***Tujuan end*** -->
+
+    <!-- ***Callback start*** -->
+    <section class="home-callback bg-img-fullcallback" style="background-image: url(/clients/images/bg-rusli.jpg);">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <div class="callback-content">
+                        <div class="video-button">
+                            <a id="video-container" data-fancybox="video-gallery"
+                                href="https://www.youtube.com/watch?v=2OYar8OHEOU">
+                                <i class="fas fa-play"></i>
+                            </a>
+                        </div>
+                        <h2 class="section-title">APAKAH ANDA SIAP UNTUK BEPERGIAN? INGATLAH KAMI!!</h2>
+                        <p>Siap-siaplah untuk memulai perjalanan tak terlupakan melalui Jawa Timur, di mana setiap sudut
+                            menjanjikan petualangan, penemuan, dan keindahan yang memukau.</p>
+                        <div class="callback-btn">
+                            <a href="package.html" class="round-btn">Lihat Paket</a>
+                            <a href="about.html" class="outline-btn outline-btn-white">Pelajari Lebih Lanjut</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***Callback end*** -->
+
+    <!-- ***Counter start*** -->
+    <div class="home-counter">
+        {% include "layouts/clients/counter.njk" %}
+    </div>
+    <!-- ***Counter end*** -->
+
+    <!-- ***Paket start*** -->
+    {% include "layouts/clients/package.njk" %}
+    <!-- ***Paket end*** -->
+
+    {% if recomnet == null %}
+    <section class="container">
+        <div class="col-lg-8 offset-lg-2 text-sm-center">
+            <div class="section-heading">
+                <h2 class="section-title">TIDAK ADA PAKET PROMO PADA MINGGU INI</h2>
+            </div>
+        </div>
+    </section>
+    {% else %}
+    {% include "layouts/clients/recomended.njk" %}
+    {% endif %}
+    <!-- ***Paket Rekomendasi start*** -->
+
+    <!-- ***Paket Rekomendasi end*** -->
+
+    <!-- ***Galeri start*** -->
+    <!-- <section class="home-gallery">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-sm-center">
+                    <div class="section-heading">
+                        <h5 class="sub-title">GALERI FOTO</h5>
+                        <h2 class="section-title">FOTO-FOTO DARI PARA TRAVELLERS</h2>
+                        <p>Fusce hic augue velit wisi quibusdam pariatur, iusto primis, nec nemo, rutrum. Vestibulum
+                            cumque laudantium. Sit ornare mollitia tenetur, aptent.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="gallery-section">
+                <div class="gallery-container grid">
+                    <div class="single-gallery grid-item">
+                        <figure class="gallery-img">
+                            {# <a href="/clients/images/img14.jpg" data-fancybox="gallery">
+                                <img src="/clients/images/img14.jpg" alt=""> #}
+                                <a href="/clients/images/bg-rusli.jpg" data-fancybox="gallery">
+                                    <img src="/clients/images/bg-rusli.jpg" alt="">
+                                </a>
+                        </figure>
+                    </div>
+                    <div class="single-gallery grid-item">
+                        <figure class="gallery-img">
+                            <a href="/clients/images/img11.jpg" data-fancybox="gallery">
+                                <img src="/clients/images/img11.jpg" alt="">
+                            </a>
+                        </figure>
+                    </div>
+                    <div class="single-gallery grid-item">
+                        <figure class="gallery-img">
+                            <a href="/clients/images/img12.jpg" data-fancybox="gallery">
+                                <img src="/clients/images/img12.jpg" alt="">
+                            </a>
+                        </figure>
+                    </div>
+                    <div class="single-gallery grid-item">
+                        <figure class="gallery-img">
+                            <a href="/clients/images/img13jpg" data-fancybox="gallery">
+                                <img src="/clients/images/img13.jpg" alt="">
+                            </a>
+                        </figure>
+                    </div>
+                    <div class="single-gallery grid-item">
+                        <figure class="gallery-img">
+                            <a href="/clients/images/img10.jpg" data-fancybox="gallery">
+                                <img src="/clients/images/img10.jpg" alt="">
+                            </a>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <!-- ***Galeri end*** -->
+
+    <!-- ***Klien start*** -->
+    <section class="home-client client-section" style="background-image: url(/clients/images/banner-img1.jpg);">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="client-content">
+                        <h5 class="sub-title">PENAWARAN DISKON</h5>
+                        <h2 class="section-title">DAPATKAN DISKON KHUSUS SAAT MENDAFTAR!</h2>
+                        <p>Dapatkan kesempatan istimewa dengan diskon khusus saat mendaftar sekarang juga. Jangan
+                            lewatkan kesempatan ini!</p>
+                        <a href="contact.html" class="round-btn">Daftar Sekarang</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="overlay"></div>
+    </section>
+    <!-- ***Klien end*** -->
+
+    <!-- ***Blog start*** -->
+    <section class="home-blog">
+        <div class="container">
+            <div class="section-heading d-sm-flex align-items-center justify-content-between">
+                <div class="heading-group">
+                    <h5 class="sub-title">BLOG TERBARU</h5>
+                    <h2 class="section-title">POST TERBARU KAMI</h2>
+                    <p>Bacalah postingan terbaru kami dan temukan inspirasi untuk petualangan Anda selanjutnya.
+                        <br />Jangan lewatkan cerita menarik ini!
+                    </p>
+                </div>
+                <div class="heading-btn">
+                    <a href="blog-archive.html" class="round-btn">Lihat Semua Blog</a>
+                </div>
+            </div>
+            <div class="blog-section">
+                <div class="row gx-4">
+                    <div class="col-lg-6">
+                        <article class="post">
+                            <figure class="featured-post" style="background-image: url(/clients/images/img16.jpg);">
+                            </figure>
+                            <div class="post-content">
+                                <div class="cat-meta">
+                                    <a href="blog-archive.html">WISATA</a>
+                                </div>
+                                <h3>
+                                    <a href="blog-single.html">PERJALANAN TERBAIK KE TEMPAT TENANG</a>
+                                </h3>
+                                <p>Laboris hac erat dolor, posuere volutpat fringilla gravida metus nonummy, blandit
+                                    mi...</p>
+                                <div class="post-footer d-flex justify-content-between align-items-center">
+                                    <div class="post-btn">
+                                        <a href="blog-single.html" class="round-btn">Baca Selengkapnya</a>
+                                    </div>
+                                    <div class="meta-comment">
+                                        <a href="blog-archive.html">
+                                            <i aria-hidden="true" class="fas fa-comment"></i>
+                                            <span>0</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="col-lg-6">
+                        <article class="post">
+                            <figure class="featured-post" style="background-image: url(/clients/images/img17.jpg);">
+                            </figure>
+                            <div class="post-content">
+                                <div class="cat-meta">
+                                    <a href="blog-archive.html">TRAVEL</a>
+                                </div>
+                                <h3>
+                                    <a href="blog-single.html">BERPETUALANG BERSAMA TEMAN ADALAH YANG TERBAIK</a>
+                                </h3>
+                                <p>Laboris hac erat dolor, posuere volutpat fringilla gravida metus nonummy, blandit
+                                    mi...</p>
+                                <div class="post-footer d-flex justify-content-between align-items-center">
+                                    <div class="post-btn">
+                                        <a href="blog-single.html" class="round-btn">Baca Selengkapnya</a>
+                                    </div>
+                                    <div class="meta-comment">
+                                        <a href="blog-archive.html">
+                                            <i aria-hidden="true" class="fas fa-comment"></i>
+                                            <span>0</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***Blog end*** -->
+
+    <!-- ***Testimonial start*** -->
+    <!-- <section class="home-testimonial">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 text-center">
+                    <div class="section-heading">
+                        <h5 class="sub-title">ULASAN KLIEN</h5>
+                        <h2 class="section-title">TESTIMONI PARA TRAVELLERS</h2>
+                        <p>Fusce hic augue velit wisi quibusdam pariatur, iusto primis, nec nemo, rutrum. Vestibulum
+                            cumque laudantium. Sit ornare mollitia tenetur, aptent.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-section testimonial-slider">
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <div class="rating-start-wrap">
+                            <div class="rating-start">
+                                <span style="width: 80%"></span>
+                            </div>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua.</p>
+                        <div class="author-content">
+                            <figure class="testimonial-img">
+                                <img src="/clients/images/img18.jpg" alt="">
+                            </figure>
+                            <div class="author-name">
+                                <h5>WILLIAM WRIGHT</h5>
+                                <span>TRAVELLERS</span>
+                            </div>
+                        </div>
+                        <div class="testimonial-icon">
+                            <i aria-hidden="true" class="fas fa-quote-left"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <div class="rating-start-wrap">
+                            <div class="rating-start">
+                                <span style="width: 80%"></span>
+                            </div>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua.</p>
+                        <div class="author-content">
+                            <figure class="testimonial-img">
+                                <img src="/clients/images/img19.jpg" alt="">
+                            </figure>
+                            <div class="author-name">
+                                <h5>ALISON WHITE</h5>
+                                <span>TRAVELLERS</span>
+                            </div>
+                        </div>
+                        <div class="testimonial-icon">
+                            <i aria-hidden="true" class="fas fa-quote-left"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <div class="rating-start-wrap">
+                            <div class="rating-start">
+                                <span style="width: 80%"></span>
+                            </div>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua.</p>
+                        <div class="author-content">
+                            <figure class="testimonial-img">
+                                <img src="/clients/images/img20.jpg" alt="">
+                            </figure>
+                            <div class="author-name">
+                                <h5>GEORGE SMITH</h5>
+                                <span>TRAVELLERS</span>
+                            </div>
+                        </div>
+                        <div class="testimonial-icon">
+                            <i aria-hidden="true" class="fas fa-quote-left"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="testimonial-content">
+                        <div class="rating-start-wrap">
+                            <div class="rating-start">
+                                <span style="width: 80%"></span>
+                            </div>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua.</p>
+                        <div class="author-content">
+                            <figure class="testimonial-img">
+                                <img src="/clients/images/img19.jpg" alt="">
+                            </figure>
+                            <div class="author-name">
+                                <h5>ALISON WHITE</h5>
+                                <span>TRAVELLERS</span>
+                            </div>
+                        </div>
+                        <div class="testimonial-icon">
+                            <i aria-hidden="true" class="fas fa-quote-left"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <!-- ***Testimonial end*** -->
+
+    <!-- ***Callback start*** -->
+    <section class="home-callback bg-color-callback primary-bg">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <h5 class="sub-title">SIAP BERPETUALANG</h5>
+                    <h2 class="section-title">BERSIAP-SIAP UNTUK PETUALANGAN TAK TERLUPAKAN. INGATLAH KAMI!</h2>
+                    <p>Siapkan diri Anda untuk petualangan yang tak terlupakan. Bersama kami, setiap momen menjadi
+                        berharga. <br />Jangan ragu untuk menghubungi kami dan mulailah petualangan Anda sekarang!</p>
+                </div>
+                <div class="col-md-4 text-md-end">
+                    <a href="/contactUs" class="outline-btn outline-btn-white">Hubungi Kami!</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***Callback end*** -->
+</main>
+
+<!-- ***Footer start*** -->
+{% include "components/clients/index/footer.njk" %}
+<!-- ***Footer end*** -->
+
+{% include "components/clients/index/backToTop.njk" %}
+
+<!-- ***html pencarian kustom*** -->
+<div class="header-search-form">
+    <div class="container">
+        <div class="header-search-container">
+            <form class="search-form" role="search" method="get">
+                <input type="text" name="s" placeholder="Masukkan teks Anda...">
+            </form>
+            <a href="#" class="search-close">
+                <i class="fas fa-times"></i>
+            </a>
+        </div>
+    </div>
+</div>
+<!-- ***html pencarian kustom*** -->
+
+<!-- ***html bilah atas kustom offcanvas*** -->
+
+<!-- ***html bilah atas kustom offcanvas*** -->
+{% endblock content %}

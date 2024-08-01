@@ -1,0 +1,13 @@
+{% extends "layouts/admin/adminLayout.njk" %}
+{% import "components/admin/data-table.njk" as datatable %}
+
+{% block content %}
+    <div class="container-fluid px-4">
+        <h1 class="mt-4 mb-5">Logging Itinerary</h1>
+        {% if itinerary.length > 0 %}
+            {{ datatable.itinerary(itinerary) }}
+        {% else %}
+            <p>Data itinerary tidak ada</p>
+        {% endif %}
+    </div>
+{% endblock %}

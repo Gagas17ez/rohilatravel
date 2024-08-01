@@ -1,0 +1,38 @@
+{% extends "layouts/admin/adminLayout.njk" %} {% import "components/admin/data-table.njk" as datatable %} {% block content %}
+<div class="container-fluid px-4">
+  <h3 class="my-3"><i class="fas fa-house-damage"></i> Acomodation List</h3>
+
+  <button class="btn btn-primary mb-3" onclick="window.location.href+='/create'"><i class="fas fa-plus-circle"></i> &nbsp;Tambah Acomodaiton</button>
+
+  {% if data.length > 0 %}
+  {{ datatable.acomodation(data) }}
+  {% else %}
+  <p><b>Data Acomodation tidak ada</b></p>
+  {% endif %}
+</div>
+<script>
+  async function deleteAcomodation(id) {
+    if (confirm("Are you sure you want to delete this Acomodation?")) {
+      try {
+        const response = await fetch("/admin/acomodation/api/delete/" + id, {
+          method: "DELETE",
+        });
+
+        if (response.ok) {
+          // Optionally handle success, like updating UI
+          alert("Acomodation deleted successfully");
+          location.reload();
+        } else {
+          // Handle server error
+          console.error("Failed to delete Acomodation:", response.statusText);
+        }
+      } catch (error) {
+        // Handle network error
+        console.error("Failed to delete Acomodation:", error.message);
+      }
+    } else {
+      return false;
+    }
+  }
+</script>
+{% endblock %}

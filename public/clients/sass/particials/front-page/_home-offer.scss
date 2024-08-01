@@ -1,0 +1,127 @@
+.home-offer {
+	padding-top: 115px;
+	padding-bottom: 115px;
+	.section-btn-wrap {
+	    padding-top: 10px;
+	}
+	@include bp(xl) {
+		.row {
+			margin-left: -25px;
+			margin-right: -25px;
+			[class*="col-"] {
+				padding-left: 25px; 
+				padding-right: 25px; 
+			}
+		}
+	}
+	@include bp(smx) {
+		padding-top: 70px;
+		padding-bottom: 70px;
+	}
+}
+.offer-item {
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+.offer-item {
+	@include flexbox();
+	@include flex-wrap(wrap);
+	@include align-items(flex-end);
+	@include border-radius(25px);
+	min-height: 520px;
+	margin-bottom: 50px;
+	position: relative;
+	.offer-content {
+		background-color: rgba($light-color, 0.85);
+		@include border-radius(25px);
+		margin: 20px;
+		max-width: 345px;
+		padding: 25px;
+	}
+	.package-meta {
+		display: inline-block;
+		position: relative;
+		margin-bottom: 15px;
+		ul {
+			font-size: 0;
+			margin: 0;
+			padding: 0;
+			li {
+				[class*="fa-"] {
+					color: $primary-color;
+					margin-right: 4px;
+				}
+				display: inline-block;
+				font-size: 13px;
+				line-height: 1.1;
+				padding: 0 12px;
+				position: relative;
+				&:before {
+					color: #BBBBBB;
+					content: "|";
+					position: absolute;
+					right: -3px;
+					top: 0;
+				}
+				&:first-child {
+					padding-left: 0;
+				}
+				&:last-child {
+					padding-right: 0;
+					&:before {
+						display: none;
+					}
+				}
+			}
+		}
+	}
+	h3 {
+		text-transform: uppercase;
+		margin-bottom: 8px;
+	}
+	p {
+		margin-bottom: 10px;
+	}
+	.price-list {
+		color: $primary-color;
+		font-size: 22px;
+		font-weight: 700;
+		margin-bottom: 17px;
+	}
+	.offer-badge {
+		background-color: $primary-color;
+		@include border-radius(25px);
+		color: $light-color;
+		font-size: 14px;
+		padding: 8px 18px;
+		position: absolute;
+		top: 20px;
+		right: 20px;
+	}
+	@include bp(smx) {
+		margin-bottom: 30px;
+		.offer-content {
+			padding: 25px 20px;
+		}
+		.package-meta {
+			display: inline-block;
+			position: relative;
+			margin-bottom: 15px;
+			ul {
+				li {
+					display: inline-block;
+					font-size: 11px;
+					line-height: 1.1;
+					padding: 0 9px;
+				}
+			}
+		}
+		.price-list {
+			font-size: 18px;
+		}
+		.offer-badge {
+			font-size: 13px;
+		}
+	}
+}

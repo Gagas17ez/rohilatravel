@@ -1,0 +1,38 @@
+{% macro title(val) %}
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+        <!-- favicon -->
+        <link rel="icon" type="image/png" href="/clients/images/favicon.png" />
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="/clients/vendors/bootstrap/css/bootstrap.min.css" media="all" />
+        <!-- jquery-ui css -->
+        <link rel="stylesheet" type="text/css" href="/clients/vendors/jquery-ui/jquery-ui.min.css" />
+        <!-- fancybox box css -->
+        <link rel="stylesheet" type="text/css" href="/clients/vendors/fancybox/dist/jquery.fancybox.min.css" />
+        <!-- Fonts Awesome CSS -->
+        <link rel="stylesheet" type="text/css" href="/clients/vendors/fontawesome/css/all.min.css" />
+        <!-- Elmentkit Icon CSS -->
+        <link rel="stylesheet" type="text/css" href="/clients/vendors/elementskit-icon-pack/assets/css/ekiticons.css" />
+        <!-- slick slider css -->
+        <link rel="stylesheet" type="text/css" href="/clients/vendors/slick/slick.css" />
+        <link rel="stylesheet" type="text/css" href="/clients/vendors/slick/slick-theme.css" />
+        <!-- google fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet" />
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="/clients/css/style.css" />
+            <title>{{val}}</title>
+        <script src="/clients/js/alpine.js" defer></script>
+        <script src="/clients/js/htmx.js"></script>
+
+        <style>
+            @media (max-width: 768px) {
+                .sidebar {
+                    margin-top: 40px;
+                }
+            }
+        </style>
+    </head>
+{% endmacro %}
