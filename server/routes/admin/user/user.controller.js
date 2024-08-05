@@ -1,5 +1,6 @@
 const { db } = require("../../../models/index");
 const { user: User, itinerary: Itinerary, blog: Blog, category: Category } = db;
+const { v4: uuidv4 } = require('uuid');
 
 const { compare } = require("../../../helpers/hashing");
 const response = require("../../../helpers/response");
@@ -27,16 +28,26 @@ const getAdminDetailUser = async (req, res) => {
 
 const tambahUser = async (req, res) => {
   try {
-    const { name, email, password, role } = req.body;
-    if (!name || !email || !password || !role)
-      return response.res400("Mohon masukkan semua data", res);
-    await User.create({ name, email, password, role });
-    return response.res201("Buat user berhasil", null, res);
+    const { name, email, password } = req.body;
+    const role = 'user'; // Role is set as 'user' for every new entry
+
+    // Check if all required fields are provided
+    if (!name || !email || !password) {
+      return res.status(400).send("Mohon masukkan semua data");
+    }
+
+    // Creating user in the database
+    const user = await User.create({ name, email, password, role });
+    console.log("Creating user with:", { name, email, password, role });
+
+    // Return success response
+    return res.status(201).json({ message: "Buat user berhasil", user });
   } catch (error) {
-    console.error(error.message);
-    response.res500(res);
+    console.error("Error creating user:", error.message);
+    res.status(500).send("Server error");
   }
 };
+
 
 module.exports = {
   getAdminUserPage,
